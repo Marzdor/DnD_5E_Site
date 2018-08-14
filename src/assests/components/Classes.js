@@ -3,13 +3,13 @@ import React from "react";
 const Classes = props => {
   const classElem = [];
 
-  props.classList.map(item => {
-    return classElem.push(
-      <button onClick={props.handleLinkClick} key={item}>
-        {item}
+  for (let key in props.classData) {
+    classElem.push(
+      <button onClick={props.handleLinkClick} key={key}>
+        {key}
       </button>
     );
-  });
+  }
   return (
     <section>
       <div>{classElem}</div>

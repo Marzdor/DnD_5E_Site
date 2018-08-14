@@ -64,9 +64,7 @@ class App extends Component {
         page = (
           <Classes
             handleLinkClick={this.handleLinkClick}
-            classList={this.state.classData.map(item => {
-              return item.name;
-            })}
+            classData={this.state.classData}
             name={this.state.selected}
           />
         );
