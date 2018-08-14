@@ -62,7 +62,6 @@ class App extends Component {
         page = (
           <Classes
             handleLinkClick={this.handleLinkClick}
-            classList={this.state.classList}
             classData={this.state.classData}
           />
         );

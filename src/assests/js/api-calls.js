@@ -10,7 +10,6 @@ function getBaseClassData(stateClassData, onSuccess) {
         newClassData.push({ name: item.name });
         return true;
       });
-      ////////////////////////////////////////////
       // Get base class data
       for (let i = 1; i < newClassData.length; i++) {
         let target = "http://www.dnd5eapi.co/api/classes/" + i;
@@ -21,7 +20,7 @@ function getBaseClassData(stateClassData, onSuccess) {
           .then(data => {
             // Delete keys we don't want/need
             const cleanedData = cleanClassData(data);
-            // Clean data more and add data to existing object
+            // Cleaning data more and add data to existing object
             for (let key in cleanedData) {
               let prop = [];
               if (cleanedData.hasOwnProperty(key)) {
