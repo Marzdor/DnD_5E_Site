@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
-import Nav from "./components/Nav";
-import Home from "./components/Home";
-import Classes from "./components/Classes";
-import Spells from "./components/Spells";
+import Nav from "./assests/components/Nav";
+import Home from "./assests/components/Home";
+import Classes from "./assests/components/Classes";
+import Spells from "./assests/components/Spells";
+import { getBaseClassData } from "./assests/js/api-calls";
 
 class App extends Component {
   constructor(props) {
@@ -14,69 +15,15 @@ class App extends Component {
       classData: [],
       spellData: {}
     };
+    this.setClassCall = this.setClassCall.bind(this);
     this.changePage = this.changePage.bind(this);
-    this.cleanClassData = this.cleanClassData.bind(this);
     this.cleanStartEqupmentData = this.cleanStartEqupmentData.bind(this);
     this.handleNavClick = this.handleNavClick.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
   }
 
   componentDidMount() {
-    fetch("http://www.dnd5eapi.co/api/classes/")
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        // Get list of all classes
-        let newClassData = this.state.classData;
-        data.results.map(item => {
-          newClassData.push({ name: item.name });
-          return true;
-        });
-        ////////////////////////////////////////////
-        // Get base class data
-        for (let i = 1; i < newClassData.length; i++) {
-          let target = "http://www.dnd5eapi.co/api/classes/" + i;
-          fetch(target)
-            .then(res => {
-              return res.json();
-            })
-            .then(data => {
-              // Delete keys we don't want/need
-              const cleanedData = this.cleanClassData(data);
-              // Clean data more and add data to existing object
-              for (let key in cleanedData) {
-                let prop = [];
-                if (cleanedData.hasOwnProperty(key)) {
-                  switch (key) {
-                    case "proficiencies":
-                    case "saving_throws":
-                      cleanedData[key].map(item => {
-                        prop.push(item.name);
-                        return true;
-                      });
-                      newClassData[i - 1][key] = prop;
-                      break;
-                    case "proficiency_choices":
-                      cleanedData[key][0].from.map(item => {
-                        prop.push(item.name);
-                        return true;
-                      });
-                      prop = ["Choose: " + cleanedData[key][0].choose, ...prop];
-                      newClassData[i - 1][key] = prop;
-                      break;
-                    case "subclasses":
-                      newClassData[i - 1][key] = cleanedData[key][0].name;
-                      break;
-                    default:
-                      newClassData[i - 1][key] = cleanedData[key];
-                  }
-                }
-              }
-            });
-        }
-        this.setState({ classData: newClassData });
-      });
+    getBaseClassData(this.state.classData, this.setClassCall);
 
     fetch("http://www.dnd5eapi.co/api/spells/")
       .then(res => {
@@ -94,7 +41,9 @@ class App extends Component {
     //TODO GET Sub CLass
     //TODO GET STARTING EQUIPMENT DATA ...
   }
-
+  setClassCall(data) {
+    this.setState({ classData: data });
+  }
   changePage(name) {
     let page;
     switch (name) {
@@ -122,14 +71,6 @@ class App extends Component {
         console.log(name);
     }
     return page;
-  }
-
-  cleanClassData(data) {
-    delete data.index;
-    delete data.name;
-    delete data.url;
-    delete data._id;
-    return data;
   }
 
   cleanStartEqupmentData(target) {}
