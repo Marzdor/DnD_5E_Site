@@ -11,12 +11,12 @@ const Classes = props => {
     );
   }
   return (
-    <section>
-      <div>{classElem}</div>
-      <div>
+    <article>
+      <header>{classElem}</header>
+      <section>
         <h2>{props.name}</h2>
-      </div>
-    </section>
+      </section>
+    </article>
   );
 };
 

@@ -82,7 +82,7 @@ class App extends Component {
     const newComponent = this.changePage(pageName);
     this.setState({ page: pageName, component: newComponent });
   }
-  //TODO handle link clicks
+
   handleLinkClick(e) {
     const name = e.target.innerHTML;
     switch (this.state.page) {
@@ -92,7 +92,6 @@ class App extends Component {
           const newComponent = this.changePage(pageName);
           this.setState({ page: pageName, component: newComponent });
         });
-
         break;
       case "Spells":
         break;
@@ -102,10 +101,10 @@ class App extends Component {
   }
   render() {
     return (
-      <section>
+      <main>
         <Nav handleNavClick={this.handleNavClick} />
         {this.state.component}
-      </section>
+      </main>
     );
   }
 }

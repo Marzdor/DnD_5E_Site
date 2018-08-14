@@ -10,7 +10,14 @@ const Spells = props => {
       </button>
     );
   });
-  return <section>{spellElem}</section>;
+  return (
+    <article>
+      <header>{spellElem}</header>
+      <section>
+        <h2>{props.name}</h2>
+      </section>
+    </article>
+  );
 };
 
 export default Spells;
