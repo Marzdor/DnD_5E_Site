@@ -10,7 +10,14 @@ const Classes = props => {
       </button>
     );
   });
-  return <section>{classElem}</section>;
+  return (
+    <section>
+      <div>{classElem}</div>
+      <div>
+        <h2>{props.name}</h2>
+      </div>
+    </section>
+  );
 };
 
 export default Classes;

@@ -12,9 +12,14 @@ class App extends Component {
       page: "Home",
       component: <Home />,
       classList: [],
-      spellList: []
+      classData: {},
+      spellList: [],
+      spellData: {},
+      selected: { item: "", target: "" }
     };
     this.changePage = this.changePage.bind(this);
+    this.getClassData = this.getClassData.bind(this);
+    this.getStartEqipment = this.getStartEqipment.bind(this);
     this.handleNavClick = this.handleNavClick.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
   }
@@ -32,13 +37,13 @@ class App extends Component {
         return res.json();
       })
       .then(data => {
-        const list = data.results.map(item => item.name);
-        this.setState({ spellList: list });
+        this.setState({ spellList: data.results });
       });
   }
 
   changePage(name) {
     let page;
+
     switch (name) {
       case "Home":
         page = <Home />;
@@ -56,6 +61,8 @@ class App extends Component {
           <Classes
             handleLinkClick={this.handleLinkClick}
             classList={this.state.classList}
+            classData={this.state.classData}
+            name={this.state.selected.item}
           />
         );
         break;
@@ -63,6 +70,30 @@ class App extends Component {
         console.log(name);
     }
     return page;
+  }
+
+  getClassData(target, name) {
+    fetch(target)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        this.setState({
+          selected: { item: name, target: target },
+          classData: data
+        });
+      });
+  }
+  //TODO GET STARTING EQUIPMENT DATA ...
+  getStartEqipment(target) {
+    fetch(target)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        // console.log(data);
+        // this.setState({ classList: data.results });
+      });
   }
 
   handleNavClick(e) {
@@ -73,15 +104,24 @@ class App extends Component {
 
   handleLinkClick(e) {
     const name = e.target.innerHTML;
+    let target;
     switch (this.state.page) {
       case "Classes":
-        const target = this.state.classList.reduce((acc, item) => {
+        target = this.state.classList.reduce((acc, item) => {
           let url;
           item.name === name ? (url = acc + item.url) : (url = acc + "");
           return url;
         }, "");
+        this.getClassData(target, name);
+        console.log(this.state.selected.item);
         break;
       case "Spells":
+        target = this.state.spellList.reduce((acc, item) => {
+          let url;
+          item.name === name ? (url = acc + item.url) : (url = acc + "");
+          return url;
+        }, "");
+        console.log(target);
         break;
       default:
         console.log(this.state.page);
