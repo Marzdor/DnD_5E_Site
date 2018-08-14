@@ -7,12 +7,13 @@ function getBaseClassData(stateClassData, onSuccess) {
       // Get list of all classes
       let newClassData = stateClassData;
       data.results.map(item => {
-        newClassData.push({ name: item.name });
+        newClassData[item.name] = { name: item.name };
         return true;
       });
       // Get base class data
-      for (let i = 1; i < newClassData.length; i++) {
-        let target = "http://www.dnd5eapi.co/api/classes/" + i;
+      let index = 1;
+      for (let obj in newClassData) {
+        let target = "http://www.dnd5eapi.co/api/classes/" + index;
         fetch(target)
           .then(res => {
             return res.json();
@@ -31,7 +32,7 @@ function getBaseClassData(stateClassData, onSuccess) {
                       prop.push(item.name);
                       return true;
                     });
-                    newClassData[i - 1][key] = prop;
+                    newClassData[obj][key] = prop;
                     break;
                   case "proficiency_choices":
                     cleanedData[key][0].from.map(item => {
@@ -39,17 +40,18 @@ function getBaseClassData(stateClassData, onSuccess) {
                       return true;
                     });
                     prop = ["Choose: " + cleanedData[key][0].choose, ...prop];
-                    newClassData[i - 1][key] = prop;
+                    newClassData[obj][key] = prop;
                     break;
                   case "subclasses":
-                    newClassData[i - 1][key] = cleanedData[key][0].name;
+                    newClassData[obj][key] = cleanedData[key][0].name;
                     break;
                   default:
-                    newClassData[i - 1][key] = cleanedData[key];
+                    newClassData[obj][key] = cleanedData[key];
                 }
               }
             }
           });
+        index++;
       }
       onSuccess(newClassData);
     });
