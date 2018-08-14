@@ -13,7 +13,8 @@ class App extends Component {
       page: "Home",
       component: <Home />,
       classData: [],
-      spellData: {}
+      spellData: {},
+      selected: ""
     };
     this.setClassCall = this.setClassCall.bind(this);
     this.changePage = this.changePage.bind(this);
@@ -41,6 +42,7 @@ class App extends Component {
     //TODO GET Sub CLass
     //TODO GET STARTING EQUIPMENT DATA ...
   }
+
   setClassCall(data) {
     this.setState({ classData: data });
   }
@@ -62,7 +64,10 @@ class App extends Component {
         page = (
           <Classes
             handleLinkClick={this.handleLinkClick}
-            classData={this.state.classData}
+            classList={this.state.classData.map(item => {
+              return item.name;
+            })}
+            name={this.state.selected}
           />
         );
         break;
@@ -81,10 +86,15 @@ class App extends Component {
   }
   //TODO handle link clicks
   handleLinkClick(e) {
-    // const name = e.target.innerHTML;
-    // let target;
+    const name = e.target.innerHTML;
     switch (this.state.page) {
       case "Classes":
+        this.setState({ selected: name }, () => {
+          const pageName = this.state.page;
+          const newComponent = this.changePage(pageName);
+          this.setState({ page: pageName, component: newComponent });
+        });
+
         break;
       case "Spells":
         break;

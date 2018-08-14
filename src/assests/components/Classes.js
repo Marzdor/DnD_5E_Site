@@ -3,10 +3,10 @@ import React from "react";
 const Classes = props => {
   const classElem = [];
 
-  props.classData.map(item => {
+  props.classList.map(item => {
     return classElem.push(
-      <button onClick={props.handleLinkClick} key={item.name}>
-        {item.name}
+      <button onClick={props.handleLinkClick} key={item}>
+        {item}
       </button>
     );
   });
