@@ -61,10 +61,15 @@ class App extends Component {
         );
         break;
       case "Classes":
+        let classData;
+        this.state.selected === ""
+          ? (classData = this.state.classData)
+          : (classData = this.state.classData[this.state.selected]);
+
         page = (
           <Classes
             handleLinkClick={this.handleLinkClick}
-            classData={this.state.classData}
+            classData={classData}
             name={this.state.selected}
           />
         );

@@ -7,6 +7,7 @@ function getBaseClassData(stateClassData, onSuccess) {
       // Get list of all classes
       let newClassData = stateClassData;
       data.results.map(item => {
+        // TODO remove name key ?
         newClassData[item.name] = { name: item.name };
         return true;
       });
