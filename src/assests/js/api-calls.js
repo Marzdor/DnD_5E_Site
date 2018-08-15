@@ -12,14 +12,15 @@ function getBaseClassData(stateClassData, onSuccess) {
         return true;
       });
       // Get base class data
-      let index = 1;
+
       for (let obj in newClassData) {
-        let target = "http://www.dnd5eapi.co/api/classes/" + index;
+        let target = "http://www.dnd5eapi.co/api/classes/" + obj.toLowerCase();
         fetch(target)
           .then(res => {
             return res.json();
           })
           .then(data => {
+            console.log(data);
             // Delete keys we don't want/need
             const cleanedData = cleanClassData(data);
             // Cleaning data more and add data to existing object
@@ -52,7 +53,6 @@ function getBaseClassData(stateClassData, onSuccess) {
               }
             }
           });
-        index++;
       }
       onSuccess(newClassData);
     });

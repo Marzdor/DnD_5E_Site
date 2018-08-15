@@ -35,7 +35,7 @@ const Classes = props => {
         <div>Class Level Place Holder</div>
         {/* TODO Start Equipment */}
         <div>Start Equipment Place Holder</div>
-        <h3>Hit Dice: {props.classData.hit_dice}</h3>
+        <h3>Hit Dice: {props.classData.hit_die}</h3>
         <div>
           <h3>Proficiencies</h3>
           {profElem}
