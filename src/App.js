@@ -37,7 +37,7 @@ class App extends Component {
         });
         this.setState({ spellData: newSpellData });
       });
-    //TODO GET Class LEVELS
+
     //TODO GET Proficiencieses
     //TODO GET Sub CLass
     //TODO GET STARTING EQUIPMENT DATA ...

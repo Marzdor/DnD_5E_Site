@@ -63,6 +63,7 @@ function getBaseClassData(stateClassData, onSuccess) {
               for (let key in level) {
                 let prop = [];
                 switch (key) {
+                  // TODO Fix Rouge/Monk data to not show obj for class_specific
                   case "class_specific":
                   case "spellcasting":
                     for (let item in level[key]) {
