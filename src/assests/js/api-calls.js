@@ -7,12 +7,10 @@ function getBaseClassData(stateClassData, onSuccess) {
       // Get list of all classes
       let newClassData = stateClassData;
       data.results.map(item => {
-        // TODO remove name key ?
-        newClassData[item.name] = { name: item.name };
+        newClassData[item.name] = {};
         return true;
       });
       // Get base class data
-
       for (let obj in newClassData) {
         let target = "http://www.dnd5eapi.co/api/classes/" + obj.toLowerCase();
         fetch(target)
