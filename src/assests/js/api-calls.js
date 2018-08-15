@@ -89,6 +89,34 @@ function getBaseClassData(stateClassData, onSuccess) {
             //console.log(cleanedData);
           });
       }
+      // Getting equipment data
+      for (let i = 1; i <= 12; i++) {
+        fetch("http://www.dnd5eapi.co/api/startingequipment/" + i)
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            // Delete keys we don't want/need
+            let className = data.class.name;
+            let cleanedData = cleanStartEquipData(data);
+            newClassData[className].equipment = {};
+            // Cleaning data more and add data to existing object
+            for (let key in cleanedData) {
+              let prop = [];
+              const keyRegex = key.match(/choice_\d/);
+              if (keyRegex !== null) {
+                cleanedData[key].map(item => {
+                  return prop.push(
+                    item.from.map(subItem => {
+                      return subItem.item.name;
+                    })
+                  );
+                });
+                newClassData[className].equipment[key] = prop;
+              }
+            }
+          });
+      }
       onSuccess(newClassData);
     });
 }
@@ -107,6 +135,13 @@ function cleanLevelData(data) {
   delete data.url;
   delete data._id;
   delete data.feature_choices;
+  return data;
+}
+function cleanStartEquipData(data) {
+  delete data.class;
+  delete data.index;
+  delete data.url;
+  delete data._id;
   return data;
 }
 export { getBaseClassData };
