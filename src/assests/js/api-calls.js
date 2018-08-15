@@ -10,15 +10,14 @@ function getBaseClassData(stateClassData, onSuccess) {
         newClassData[item.name] = {};
         return true;
       });
-      // Get base class data
       for (let obj in newClassData) {
+        // Get base class data
         let target = "http://www.dnd5eapi.co/api/classes/" + obj.toLowerCase();
         fetch(target)
           .then(res => {
             return res.json();
           })
           .then(data => {
-            console.log(data);
             // Delete keys we don't want/need
             const cleanedData = cleanClassData(data);
             // Cleaning data more and add data to existing object
@@ -29,15 +28,13 @@ function getBaseClassData(stateClassData, onSuccess) {
                   case "proficiencies":
                   case "saving_throws":
                     cleanedData[key].map(item => {
-                      prop.push(item.name);
-                      return true;
+                      return prop.push(item.name);
                     });
                     newClassData[obj][key] = prop;
                     break;
                   case "proficiency_choices":
                     cleanedData[key][0].from.map(item => {
-                      prop.push(item.name);
-                      return true;
+                      return prop.push(item.name);
                     });
                     prop = ["Choose: " + cleanedData[key][0].choose, ...prop];
                     newClassData[obj][key] = prop;
@@ -51,6 +48,45 @@ function getBaseClassData(stateClassData, onSuccess) {
               }
             }
           });
+        // Getting class level data
+        fetch(target + "/levels")
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            // Delete keys we don't want/need
+            let cleanedData = data.map(item => {
+              return cleanLevelData(item);
+            });
+            // Cleaning data more and add data to existing object
+            cleanedData.map(level => {
+              for (let key in level) {
+                let prop = [];
+                switch (key) {
+                  case "class_specific":
+                  case "spellcasting":
+                    for (let item in level[key]) {
+                      prop.push(
+                        item.replace(/_/g, " ") + ": " + level[key][item]
+                      );
+                    }
+                    level[key] = prop;
+                    break;
+                  case "features":
+                    level[key].map(item => {
+                      return prop.push(item.name);
+                    });
+                    level[key] = prop;
+                    break;
+                  default:
+                    key = level[key];
+                }
+              }
+              return true;
+            });
+            newClassData[obj].class_levels = cleanedData;
+            //console.log(cleanedData);
+          });
       }
       onSuccess(newClassData);
     });
@@ -61,6 +97,15 @@ function cleanClassData(data) {
   delete data.name;
   delete data.url;
   delete data._id;
+  delete data.class_levels;
+  return data;
+}
+function cleanLevelData(data) {
+  delete data.index;
+  delete data.class;
+  delete data.url;
+  delete data._id;
+  delete data.feature_choices;
   return data;
 }
 export { getBaseClassData };

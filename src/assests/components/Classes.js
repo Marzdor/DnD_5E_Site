@@ -1,7 +1,7 @@
 import React from "react";
 
 const classElem = [];
-
+// TODO setup initial load in for class page before class is selected
 const Classes = props => {
   const profElem = [];
   const profChoiceElem = [];
