@@ -86,7 +86,6 @@ function getBaseClassData(stateClassData, onSuccess) {
               return true;
             });
             newClassData[obj].class_levels = cleanedData;
-            //console.log(cleanedData);
           });
       }
       // Getting equipment data
@@ -99,7 +98,7 @@ function getBaseClassData(stateClassData, onSuccess) {
             // Delete keys we don't want/need
             let className = data.class.name;
             let cleanedData = cleanStartEquipData(data);
-            newClassData[className].equipment = {};
+            newClassData[className].equipment = [];
             // Cleaning data more and add data to existing object
             for (let key in cleanedData) {
               let prop = [];
@@ -112,8 +111,17 @@ function getBaseClassData(stateClassData, onSuccess) {
                     })
                   );
                 });
-                newClassData[className].equipment[key] = prop;
+                cleanedData[key] = prop;
+              } else {
+                switch (key) {
+                  case "starting_equipment":
+                    cleanedData[key].map(item => {
+                      return prop.push(item.quantity + "x " + item.item.name);
+                    });
+                    cleanedData[key] = prop;
+                }
               }
+              newClassData[className].equipment = cleanedData;
             }
           });
       }
@@ -142,6 +150,7 @@ function cleanStartEquipData(data) {
   delete data.index;
   delete data.url;
   delete data._id;
+  delete data.choices_to_make;
   return data;
 }
 export { getBaseClassData };

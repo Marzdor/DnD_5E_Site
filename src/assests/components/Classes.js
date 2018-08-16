@@ -66,6 +66,10 @@ const Classes = props => {
         </div>
       );
     });
+    // Equipment Elements
+    props.classData.equipment.map(item => {
+      console.log(item);
+    });
   }
 
   return (
