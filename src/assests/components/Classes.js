@@ -34,17 +34,8 @@ const Classes = props => {
     props.classData.class_levels.map(item => {
       return classLevelsElem.push(
         <div key={props.name + " At Level - " + item.level}>
-          <h4 key={"At Level - " + item.level}>{item.level}</h4>
-          <h4
-            key={
-              "At Level - " +
-              item.level +
-              " ABSB - " +
-              item.ability_score_bonuses
-            }
-          >
-            {item.ability_score_bonuses}
-          </h4>
+          <h4>{item.level}</h4>
+          <h4>{item.ability_score_bonuses}</h4>
           {typeof item.class_specific !== "undefined"
             ? item.class_specific.map(subItem => {
                 return (
@@ -61,17 +52,14 @@ const Classes = props => {
               </h4>
             );
           })}
-          <h4 key={"At Level - " + item.level + " PB - " + item.prof_bonus}>
-            {item.prof_bonus}
-          </h4>
+          <h4>{item.prof_bonus}</h4>
         </div>
       );
     });
     // Equipment Elements
-    // TODO render equipment
     for (let key in props.classData.equipment) {
       classEquipment.push(
-        <div>
+        <div key={key}>
           <h4>{key.replace(/_/, " ")}</h4>
           <p>
             {props.classData.equipment[key]
@@ -91,6 +79,7 @@ const Classes = props => {
       <section>
         <h2>{props.name}</h2>
         <div>
+          <h3>Class Levels</h3>
           <div>
             <h4>Level</h4>
             <h4>Ablility Score</h4>
@@ -100,8 +89,10 @@ const Classes = props => {
           </div>
           {classLevelsElem}
         </div>
-        {/* TODO Start Equipment */}
-        <div>{classEquipment}</div>
+        <div>
+          <h3>Equipment</h3>
+          {classEquipment}
+        </div>
         <h3>Hit Dice: {props.classData.hit_die}</h3>
         <div>
           <h3>Proficiencies</h3>
