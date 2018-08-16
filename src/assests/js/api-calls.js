@@ -63,8 +63,25 @@ function getBaseClassData(stateClassData, onSuccess) {
               for (let key in level) {
                 let prop = [];
                 switch (key) {
-                  // TODO Fix Rouge/Monk data to not show obj for class_specific
                   case "class_specific":
+                    switch (obj) {
+                      case "Rogue":
+                        level[key].sneak_attack =
+                          "Dice Count: " +
+                          level[key].sneak_attack.dice_count +
+                          " Dice Value: " +
+                          level[key].sneak_attack.dice_value;
+                        break;
+                      case "Monk":
+                        level[key].martial_arts =
+                          "Dice Count: " +
+                          level[key].martial_arts.dice_count +
+                          " Dice Value: " +
+                          level[key].martial_arts.dice_value;
+                        break;
+                      default:
+                    }
+                  // fallsthrough
                   case "spellcasting":
                     for (let item in level[key]) {
                       prop.push(
