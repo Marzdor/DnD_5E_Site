@@ -7,6 +7,7 @@ const Classes = props => {
   const profChoiceElem = [];
   const savingThrowElem = [];
   const classLevelsElem = [];
+  const classEquipment = [];
 
   if (props.name.length === 0) {
     for (let key in props.classData) {
@@ -67,9 +68,21 @@ const Classes = props => {
       );
     });
     // Equipment Elements
-    props.classData.equipment.map(item => {
-      console.log(item);
-    });
+    // TODO render equipment
+    for (let key in props.classData.equipment) {
+      classEquipment.push(
+        <div>
+          <h4>{key.replace(/_/, " ")}</h4>
+          <p>
+            {props.classData.equipment[key]
+              .toString()
+              .replace(/,/g, " or ")
+              .replace(/;;/g, ": ")
+              .replace(/;/g, ",")}
+          </p>
+        </div>
+      );
+    }
   }
 
   return (
@@ -88,7 +101,7 @@ const Classes = props => {
           {classLevelsElem}
         </div>
         {/* TODO Start Equipment */}
-        <div>Start Equipment Place Holder</div>
+        <div>{classEquipment}</div>
         <h3>Hit Dice: {props.classData.hit_die}</h3>
         <div>
           <h3>Proficiencies</h3>

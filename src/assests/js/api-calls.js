@@ -111,15 +111,18 @@ function getBaseClassData(stateClassData, onSuccess) {
                     })
                   );
                 });
+                prop.map((item, i) => {
+                  if (item.length > 2) {
+                    item.unshift("Select 1 Of These ;");
+                  }
+                  return (prop[i] = item.toString().replace(/,/g, ";"));
+                });
                 cleanedData[key] = prop;
               } else {
-                switch (key) {
-                  case "starting_equipment":
-                    cleanedData[key].map(item => {
-                      return prop.push(item.quantity + "x " + item.item.name);
-                    });
-                    cleanedData[key] = prop;
-                }
+                cleanedData[key].map(item => {
+                  return prop.push(item.quantity + "x " + item.item.name);
+                });
+                cleanedData[key] = prop;
               }
               newClassData[className].equipment = cleanedData;
             }
