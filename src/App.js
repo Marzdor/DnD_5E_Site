@@ -40,7 +40,6 @@ class App extends Component {
 
     //TODO GET Proficiencieses
     //TODO GET Sub CLass
-    //TODO GET STARTING EQUIPMENT DATA ...
   }
 
   setClassCall(data) {

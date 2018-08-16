@@ -86,7 +86,46 @@ function getBaseClassData(stateClassData, onSuccess) {
               return true;
             });
             newClassData[obj].class_levels = cleanedData;
-            //console.log(cleanedData);
+          });
+      }
+      // Getting equipment data
+      for (let i = 1; i <= 12; i++) {
+        fetch("http://www.dnd5eapi.co/api/startingequipment/" + i)
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            // Delete keys we don't want/need
+            let className = data.class.name;
+            let cleanedData = cleanStartEquipData(data);
+            newClassData[className].equipment = [];
+            // Cleaning data more and add data to existing object
+            for (let key in cleanedData) {
+              let prop = [];
+              const keyRegex = key.match(/choice_\d/);
+              if (keyRegex !== null) {
+                cleanedData[key].map(item => {
+                  return prop.push(
+                    item.from.map(subItem => {
+                      return subItem.item.name;
+                    })
+                  );
+                });
+                prop.map((item, i) => {
+                  if (item.length > 2) {
+                    item.unshift("Select 1 Of These ;");
+                  }
+                  return (prop[i] = item.toString().replace(/,/g, ";"));
+                });
+                cleanedData[key] = prop;
+              } else {
+                cleanedData[key].map(item => {
+                  return prop.push(item.quantity + "x " + item.item.name);
+                });
+                cleanedData[key] = prop;
+              }
+              newClassData[className].equipment = cleanedData;
+            }
           });
       }
       onSuccess(newClassData);
@@ -107,6 +146,14 @@ function cleanLevelData(data) {
   delete data.url;
   delete data._id;
   delete data.feature_choices;
+  return data;
+}
+function cleanStartEquipData(data) {
+  delete data.class;
+  delete data.index;
+  delete data.url;
+  delete data._id;
+  delete data.choices_to_make;
   return data;
 }
 export { getBaseClassData };
