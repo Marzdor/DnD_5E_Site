@@ -18,7 +18,6 @@ const Classes = props => {
       );
     }
   } else {
-    document.querySelector("section").classList.remove("hidden");
     // Proficiencie Elements
     props.classData.proficiencies.map(item => {
       return profElem.push(<p key={item}>{item}</p>);

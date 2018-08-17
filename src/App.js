@@ -17,7 +17,6 @@ class App extends Component {
     };
     this.setClassCall = this.setClassCall.bind(this);
     this.changePage = this.changePage.bind(this);
-    this.cleanStartEqupmentData = this.cleanStartEqupmentData.bind(this);
     this.handleNavClick = this.handleNavClick.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
   }
@@ -25,19 +24,8 @@ class App extends Component {
   componentDidMount() {
     getBaseClassData(this.state.classData, this.setClassCall);
 
-    fetch("http://www.dnd5eapi.co/api/spells/")
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        let newSpellData = this.state.spellData;
-        newSpellData.spellList = data.results.map(item => {
-          return item.name;
-        });
-        this.setState({ spellData: newSpellData });
-      });
-
     //TODO GET Proficiencieses maybe in diff page like spells?
+    //TODO GET Spells
     //TODO GET Sub CLass
   }
 
@@ -78,16 +66,20 @@ class App extends Component {
     return page;
   }
 
-  cleanStartEqupmentData(target) {}
-
   handleNavClick(e) {
     const pageName = e.target.innerHTML;
     const newComponent = this.changePage(pageName);
-    this.setState({ page: pageName, component: newComponent });
+    this.setState({
+      page: pageName,
+      component: newComponent
+    });
   }
 
   handleLinkClick(e) {
     const name = e.target.innerHTML;
+    if (document.querySelector("section").classList.contains("hidden")) {
+      document.querySelector("section").classList.remove("hidden");
+    }
     switch (this.state.page) {
       case "Classes":
         this.setState({ selected: name }, () => {
