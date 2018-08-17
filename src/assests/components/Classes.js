@@ -21,15 +21,17 @@ const Classes = props => {
   } else {
     // Proficiencie Elements
     props.classData.proficiencies.map(item => {
-      return profElem.push(<h4 key={item}>{item}</h4>);
+      return profElem.push(<p key={item}>{item}</p>);
     });
     // Proficiencie Choice Elements
     props.classData.proficiency_choices.map(item => {
-      return profChoiceElem.push(<h4 key={item}>{item}</h4>);
+      return profChoiceElem.push(
+        <p key={item}>{item.replace(/Skill:\s/, "")}</p>
+      );
     });
     // Saving Throw Elements
     props.classData.saving_throws.map(item => {
-      return savingThrowElem.push(<h4 key={item}>{item}</h4>);
+      return savingThrowElem.push(<p key={item}>{item}</p>);
     });
     // Class Level Elements
     props.classData.class_levels.map(item => {
@@ -73,17 +75,17 @@ const Classes = props => {
     // Equipment Elements
     for (let key in props.classData.equipment) {
       classEquipment.push(
-        <div className="equipment-container-sub" key={key}>
+        <div className="container-sub" key={key}>
           <h4 className="title-sub equip">{key.replace(/_/, " ")}</h4>
           {/choice/.test(key) ? (
             props.classData.equipment[key].map((item, ind) => {
               let htmlElements = [];
               item.forEach(element => {
-                htmlElements.push(<span>{element}</span>);
+                htmlElements.push(<p key={element}>{element}</p>);
               });
               console.log(ind + " " + props.classData.equipment[key].length);
               return (
-                <div className="item-grid">
+                <div key={item + " container"} className="item-grid">
                   {htmlElements}
                   {ind < props.classData.equipment[key].length - 1 ? (
                     <p className="or">"Or Choose 1 of these"</p>
@@ -106,6 +108,7 @@ const Classes = props => {
       <header>{classElem}</header>
       <section id="container">
         <h2 id="class">{props.name}</h2>
+        {/* Class Level Start */}
         <h3 className="title-main">Class Levels</h3>
         <div id="lvl-head" className="class-lvl-container-sub">
           <h4 className="class-lvl-head">
@@ -124,25 +127,30 @@ const Classes = props => {
           </h4>
         </div>
         <div id="class-lvl-container">{classLevelsElem}</div>
+        {/* Class Level End */}
+        {/* Equipment Start */}
         <div id="equipment-container">
           <h3 className="title-main">Equipment</h3>
           {classEquipment}
         </div>
-        <h3>Hit Dice: {props.classData.hit_die}</h3>
-        <div>
-          <h3>Proficiencies</h3>
+        {/* Equipment End */}
+        <h3 className="title-main">Hit Dice: {props.classData.hit_die}</h3>
+        {/* Proficiencies Start */}
+        <div className="container-sub">
+          <h3 className="title-main">Proficiencies</h3>
           {profElem}
         </div>
-        <div>
-          <h3>Proficiencie Choices</h3>
+        <div id="prof-choice" className="container-sub">
+          <h3 className="title-main">Proficiencie Choices</h3>
           {profChoiceElem}
         </div>
-        <div>
-          <h3>Saving Throws</h3>
+        {/* Proficiencies End */}
+        <div className="container-sub">
+          <h3 className="title-main">Saving Throws</h3>
           {savingThrowElem}
         </div>
-        <div>
-          <h3>Sub Classes</h3>
+        <div className="container-sub">
+          <h3 className="title-main">Sub Classes</h3>
           <p>{props.classData.subclasses}</p>
         </div>
       </section>

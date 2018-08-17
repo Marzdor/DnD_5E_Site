@@ -14,8 +14,13 @@
   #start-equip {
     grid-column: 1 / span 2;
   }
+  #prof-choice > p:first-of-type {
+    grid-column: 1 / span 2;
+  }
   .title-main {
     font-size: 1.5rem;
+    grid-column: 1 / span 2;
+    text-align: center;
   }
   .title-sub {
     text-transform: capitalize;
@@ -35,7 +40,7 @@
   .equip {
     grid-column: 1 / span 2;
   }
-  .equipment-container-sub {
+  .container-sub {
     display: grid;
     grid-template-columns: 150px 1fr;
     justify-items: center;
@@ -46,6 +51,13 @@
     display: grid;
     grid-column: span 2;
     grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 5px;
+    justify-items: center;
+    align-items: center;
+  }
+  .item-grid p {
+    margin: 0;
   }
   .or {
     grid-column: 1 / span 4;
