@@ -1,7 +1,6 @@
 import React from "react";
 
 const classElem = [];
-// TODO setup initial load in for class page before class is selected
 // TODO add spell casting
 const Classes = props => {
   const profElem = [];
@@ -19,6 +18,7 @@ const Classes = props => {
       );
     }
   } else {
+    document.querySelector("section").classList.remove("hidden");
     // Proficiencie Elements
     props.classData.proficiencies.map(item => {
       return profElem.push(<p key={item}>{item}</p>);
@@ -83,7 +83,6 @@ const Classes = props => {
               item.forEach(element => {
                 htmlElements.push(<p key={element}>{element}</p>);
               });
-              console.log(ind + " " + props.classData.equipment[key].length);
               return (
                 <div key={item + " container"} className="item-grid">
                   {htmlElements}
@@ -106,7 +105,7 @@ const Classes = props => {
   return (
     <article>
       <header>{classElem}</header>
-      <section id="container">
+      <section className="hidden" id="container">
         <h2 id="class">{props.name}</h2>
         {/* Class Level Start */}
         <h3 className="title-main">Class Levels</h3>

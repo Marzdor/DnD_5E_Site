@@ -1,0 +1,12 @@
+@media (min-width: 320px) {
+  nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+  }
+  nav a {
+    padding: 15px;
+  }
+}

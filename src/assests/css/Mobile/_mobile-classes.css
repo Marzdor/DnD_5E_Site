@@ -1,6 +1,7 @@
 @media (min-width: 320px) {
   #class {
     font-size: 2rem;
+    text-align: center;
   }
   #class-lvl-container {
     border-top: 1px solid black;
