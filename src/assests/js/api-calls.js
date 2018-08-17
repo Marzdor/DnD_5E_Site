@@ -128,12 +128,6 @@ function getBaseClassData(stateClassData, onSuccess) {
                     })
                   );
                 });
-                prop.map((item, i) => {
-                  if (item.length > 2) {
-                    item.unshift("Select 1 Of These ;");
-                  }
-                  return (prop[i] = item.toString().replace(/,/g, ";"));
-                });
                 cleanedData[key] = prop;
               } else {
                 cleanedData[key].map(item => {

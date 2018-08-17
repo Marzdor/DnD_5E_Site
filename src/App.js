@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import Nav from "./assests/components/Nav";
 import Home from "./assests/components/Home";
 import Classes from "./assests/components/Classes";
@@ -38,7 +37,7 @@ class App extends Component {
         this.setState({ spellData: newSpellData });
       });
 
-    //TODO GET Proficiencieses
+    //TODO GET Proficiencieses maybe in diff page like spells?
     //TODO GET Sub CLass
   }
 

@@ -2,6 +2,7 @@ import React from "react";
 
 const classElem = [];
 // TODO setup initial load in for class page before class is selected
+// TODO add spell casting
 const Classes = props => {
   const profElem = [];
   const profChoiceElem = [];
@@ -33,41 +34,68 @@ const Classes = props => {
     // Class Level Elements
     props.classData.class_levels.map(item => {
       return classLevelsElem.push(
-        <div key={props.name + " At Level - " + item.level}>
-          <h4>{item.level}</h4>
-          <h4>{item.ability_score_bonuses}</h4>
-          {typeof item.class_specific !== "undefined"
-            ? item.class_specific.map(subItem => {
-                return (
-                  <h4 key={"At Level - " + item.level + " CS - " + subItem}>
-                    {subItem}
-                  </h4>
-                );
-              })
-            : null}
-          {item.features.map(subItem => {
-            return (
-              <h4 key={"At Level - " + item.level + " F - " + subItem}>
-                {subItem}
-              </h4>
-            );
-          })}
-          <h4>{item.prof_bonus}</h4>
+        <div
+          className="class-lvl-container-sub"
+          key={props.name + " At Level - " + item.level}
+        >
+          <h4 className="class-lvl-head">{item.level}</h4>
+          <h4 className="class-lvl-head">{item.ability_score_bonuses}</h4>
+          <div>
+            {typeof item.class_specific !== "undefined"
+              ? item.class_specific.map(subItem => {
+                  return (
+                    <h4
+                      className="class-lvl-head"
+                      key={"At Level - " + item.level + " CS - " + subItem}
+                    >
+                      {subItem}
+                    </h4>
+                  );
+                })
+              : null}
+          </div>
+          <div>
+            {item.features.map(subItem => {
+              return (
+                <h4
+                  className="class-lvl-head"
+                  key={"At Level - " + item.level + " F - " + subItem}
+                >
+                  {subItem}
+                </h4>
+              );
+            })}
+          </div>
+          <h4 className="class-lvl-head">{item.prof_bonus}</h4>
         </div>
       );
     });
     // Equipment Elements
     for (let key in props.classData.equipment) {
       classEquipment.push(
-        <div key={key}>
-          <h4>{key.replace(/_/, " ")}</h4>
-          <p>
-            {props.classData.equipment[key]
-              .toString()
-              .replace(/,/g, " or ")
-              .replace(/;;/g, ": ")
-              .replace(/;/g, ",")}
-          </p>
+        <div className="equipment-container-sub" key={key}>
+          <h4 className="title-sub equip">{key.replace(/_/, " ")}</h4>
+          {/choice/.test(key) ? (
+            props.classData.equipment[key].map((item, ind) => {
+              let htmlElements = [];
+              item.forEach(element => {
+                htmlElements.push(<span>{element}</span>);
+              });
+              console.log(ind + " " + props.classData.equipment[key].length);
+              return (
+                <div className="item-grid">
+                  {htmlElements}
+                  {ind < props.classData.equipment[key].length - 1 ? (
+                    <p className="or">"Or Choose 1 of these"</p>
+                  ) : null}
+                </div>
+              );
+            })
+          ) : (
+            <p id="start-equip">
+              {props.classData.equipment[key].toString().replace(/,/g, " or ")}
+            </p>
+          )}
         </div>
       );
     }
@@ -76,21 +104,28 @@ const Classes = props => {
   return (
     <article>
       <header>{classElem}</header>
-      <section>
-        <h2>{props.name}</h2>
-        <div>
-          <h3>Class Levels</h3>
-          <div>
-            <h4>Level</h4>
-            <h4>Ablility Score</h4>
-            <h4>Class Specific</h4>
-            <h4>Features</h4>
-            <h4>Proficiencie Bonus</h4>
-          </div>
-          {classLevelsElem}
+      <section id="container">
+        <h2 id="class">{props.name}</h2>
+        <h3 className="title-main">Class Levels</h3>
+        <div id="lvl-head" className="class-lvl-container-sub">
+          <h4 className="class-lvl-head">
+            <span className="long">Level</span>
+            <span className="short">LvL</span>
+          </h4>
+          <h4 className="class-lvl-head">
+            <span className="long">Ablility Score</span>
+            <span className="short">Abl. Score</span>
+          </h4>
+          <h4 className="class-lvl-head">Class Specific</h4>
+          <h4 className="class-lvl-head">Features</h4>
+          <h4 className="class-lvl-head">
+            <span className="long">Proficiencie Bonus</span>
+            <span className="short">Prof. Bonus</span>
+          </h4>
         </div>
-        <div>
-          <h3>Equipment</h3>
+        <div id="class-lvl-container">{classLevelsElem}</div>
+        <div id="equipment-container">
+          <h3 className="title-main">Equipment</h3>
           {classEquipment}
         </div>
         <h3>Hit Dice: {props.classData.hit_die}</h3>
@@ -105,6 +140,10 @@ const Classes = props => {
         <div>
           <h3>Saving Throws</h3>
           {savingThrowElem}
+        </div>
+        <div>
+          <h3>Sub Classes</h3>
+          <p>{props.classData.subclasses}</p>
         </div>
       </section>
     </article>
