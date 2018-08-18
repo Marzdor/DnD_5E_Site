@@ -1,17 +1,18 @@
 import React from "react";
+//TODO Render Spellcasting level data
+const headerElements = [];
 
-const classElem = [];
-// TODO add spell casting
 const Classes = props => {
   const profElem = [];
   const profChoiceElem = [];
   const savingThrowElem = [];
   const classLevelsElem = [];
-  const classEquipment = [];
+  const classEquipmentElem = [];
+  const spellCastingElem = [];
 
   if (props.name.length === 0) {
     for (let key in props.classData) {
-      classElem.push(
+      headerElements.push(
         <button onClick={props.handleLinkClick} key={key}>
           {key}
         </button>
@@ -73,7 +74,7 @@ const Classes = props => {
     });
     // Equipment Elements
     for (let key in props.classData.equipment) {
-      classEquipment.push(
+      classEquipmentElem.push(
         <div className="container-sub" key={key}>
           <h4 className="title-sub equip">{key.replace(/_/, " ")}</h4>
           {/choice/.test(key) ? (
@@ -99,11 +100,14 @@ const Classes = props => {
         </div>
       );
     }
+    // Spell Casting Elements
+
+    console.log(classLevelsElem);
   }
 
   return (
     <article>
-      <header>{classElem}</header>
+      <header>{headerElements}</header>
       <section className="hidden" id="container">
         <h2 id="class">{props.name}</h2>
         {/* Class Level Start */}
@@ -126,10 +130,13 @@ const Classes = props => {
         </div>
         <div id="class-lvl-container">{classLevelsElem}</div>
         {/* Class Level End */}
+        {/* Spell Casting Start */}
+        <div id="spellcasting-container">{spellCastingElem}</div>
+        {/* Spell Casting End */}
         {/* Equipment Start */}
         <div id="equipment-container">
           <h3 className="title-main">Equipment</h3>
-          {classEquipment}
+          {classEquipmentElem}
         </div>
         {/* Equipment End */}
         <h3 className="title-main">Hit Dice: {props.classData.hit_die}</h3>

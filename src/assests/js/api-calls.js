@@ -92,8 +92,15 @@ function getBaseClassData(stateClassData, onSuccess) {
                           level[key].martial_arts.dice_value;
                         break;
                       default:
+                        for (let item in level[key]) {
+                          console.log(level[key]);
+                          prop.push(
+                            item.replace(/_/g, " ") + ": " + level[key][item]
+                          );
+                        }
                     }
-                  // fallsthrough
+                    level[key] = prop;
+                    break;
                   case "spellcasting":
                     for (let item in level[key]) {
                       prop.push(
