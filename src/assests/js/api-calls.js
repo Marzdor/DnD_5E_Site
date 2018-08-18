@@ -42,6 +42,18 @@ function getBaseClassData(stateClassData, onSuccess) {
                   case "subclasses":
                     newClassData[obj][key] = cleanedData[key][0].name;
                     break;
+                  case "spellcasting":
+                    fetch(cleanedData[key].url)
+                      .then(res => {
+                        return res.json();
+                      })
+                      .then(data => {
+                        let cleanedData = cleanSpellCastingData(data);
+                        const info = [cleanedData.info];
+                        prop = [cleanedData.spellcasting_ability.name, ...info];
+                        newClassData[obj][key] = prop;
+                      });
+                    break;
                   default:
                     newClassData[obj][key] = cleanedData[key];
                 }
@@ -105,8 +117,9 @@ function getBaseClassData(stateClassData, onSuccess) {
             newClassData[obj].class_levels = cleanedData;
           });
       }
-      // Getting equipment data
+
       for (let i = 1; i <= 12; i++) {
+        // Getting equipment data
         fetch("http://www.dnd5eapi.co/api/startingequipment/" + i)
           .then(res => {
             return res.json();
@@ -139,32 +152,38 @@ function getBaseClassData(stateClassData, onSuccess) {
             }
           });
       }
+
       onSuccess(newClassData);
     });
 }
 
 function cleanClassData(data) {
-  delete data.index;
+  data = commonClean(data);
   delete data.name;
-  delete data.url;
-  delete data._id;
   delete data.class_levels;
   return data;
 }
 function cleanLevelData(data) {
-  delete data.index;
-  delete data.class;
-  delete data.url;
-  delete data._id;
+  data = commonClean(data);
   delete data.feature_choices;
   return data;
 }
 function cleanStartEquipData(data) {
+  data = commonClean(data);
+  delete data.choices_to_make;
+  return data;
+}
+function cleanSpellCastingData(data) {
+  data = commonClean(data);
+  delete data.level;
+  return data;
+}
+
+function commonClean(data) {
   delete data.class;
   delete data.index;
   delete data.url;
   delete data._id;
-  delete data.choices_to_make;
   return data;
 }
 export { getBaseClassData };
