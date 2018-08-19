@@ -101,8 +101,6 @@ const Classes = props => {
       );
     }
     // Spell Casting Elements
-    //TODO fix non spell casters
-    console.log(props.classData);
     if (props.classData.hasOwnProperty("spellcasting")) {
       props.classData.spellcasting.map((item, index) => {
         if (index === 0) {
@@ -126,18 +124,17 @@ const Classes = props => {
         }
         return true;
       });
-      console.log(classLevelsElem);
     }
   }
 
   return (
     <article>
       <header>{headerElements}</header>
-      <section className="hidden" id="container">
+      <div className="hidden" id="container">
         <h2 id="class">{props.name}</h2>
         {/* Class Level Start */}
         <h3 className="title-main">Class Levels</h3>
-        <div id="lvl-head" className="class-lvl-container-sub">
+        <section id="lvl-head" className="class-lvl-container-sub">
           <h4 className="class-lvl-head">
             <span className="long">Level</span>
             <span className="short">LvL</span>
@@ -152,38 +149,38 @@ const Classes = props => {
             <span className="long">Proficiencie Bonus</span>
             <span className="short">Prof. Bonus</span>
           </h4>
-        </div>
-        <div id="class-lvl-container">{classLevelsElem}</div>
+        </section>
+        <section id="class-lvl-container">{classLevelsElem}</section>
         {/* Class Level End */}
         {/* Spell Casting Start */}
-        <div id="spellcasting-container">{spellCastingElem}</div>
+        <section id="spellcasting-container">{spellCastingElem}</section>
         {/* Spell Casting End */}
         {/* Equipment Start */}
-        <div id="equipment-container">
+        <section id="equipment-container">
           <h3 className="title-main">Equipment</h3>
           {classEquipmentElem}
-        </div>
+        </section>
         {/* Equipment End */}
         <h3 className="title-main">Hit Dice: {props.classData.hit_die}</h3>
         {/* Proficiencies Start */}
-        <div className="container-sub">
+        <section className="container-sub">
           <h3 className="title-main">Proficiencies</h3>
           {profElem}
-        </div>
-        <div id="prof-choice" className="container-sub">
+        </section>
+        <section id="prof-choice" className="container-sub">
           <h3 className="title-main">Proficiencie Choices</h3>
           {profChoiceElem}
-        </div>
+        </section>
         {/* Proficiencies End */}
-        <div className="container-sub">
+        <section className="container-sub">
           <h3 className="title-main">Saving Throws</h3>
           {savingThrowElem}
-        </div>
-        <div className="container-sub">
+        </section>
+        <section className="container-sub">
           <h3 className="title-main">Sub Classes</h3>
           <p>{props.classData.subclasses}</p>
-        </div>
-      </section>
+        </section>
+      </div>
     </article>
   );
 };
