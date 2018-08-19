@@ -93,7 +93,6 @@ function getBaseClassData(stateClassData, onSuccess) {
                         break;
                       default:
                         for (let item in level[key]) {
-                          console.log(level[key]);
                           prop.push(
                             item.replace(/_/g, " ") + ": " + level[key][item]
                           );

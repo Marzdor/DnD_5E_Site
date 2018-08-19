@@ -101,8 +101,33 @@ const Classes = props => {
       );
     }
     // Spell Casting Elements
-
-    console.log(classLevelsElem);
+    //TODO fix non spell casters
+    console.log(props.classData);
+    if (props.classData.hasOwnProperty("spellcasting")) {
+      props.classData.spellcasting.map((item, index) => {
+        if (index === 0) {
+          spellCastingElem.push(
+            <div key={item}>
+              <h4 className="title-sub">Spell Casting Ability</h4>
+              <p>{item}</p>
+            </div>
+          );
+        } else {
+          item.map(subItem => {
+            return spellCastingElem.push(
+              <div key={subItem.name}>
+                <h4 className="title-sub">{subItem.name}</h4>
+                {subItem.desc.map(para => {
+                  return <p key={"Desc : " + para.slice(0, 10)}>{para}</p>;
+                })}
+              </div>
+            );
+          });
+        }
+        return true;
+      });
+      console.log(classLevelsElem);
+    }
   }
 
   return (
@@ -118,7 +143,7 @@ const Classes = props => {
             <span className="short">LvL</span>
           </h4>
           <h4 className="class-lvl-head">
-            <span className="long">Ablility Score</span>
+            <span className="long">Ability Score</span>
             <span className="short">Abl. Score</span>
           </h4>
           <h4 className="class-lvl-head">Class Specific</h4>
