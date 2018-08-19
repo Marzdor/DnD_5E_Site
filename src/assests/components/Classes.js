@@ -34,6 +34,8 @@ const Classes = props => {
       return savingThrowElem.push(<p key={item}>{item}</p>);
     });
     // Class Level Elements
+    //TODO Maybe change this to select level form drop down?
+    //TODO ^-and add spell level casting below???
     props.classData.class_levels.map(item => {
       return classLevelsElem.push(
         <div
@@ -151,6 +153,7 @@ const Classes = props => {
           </h4>
         </section>
         <section id="class-lvl-container">{classLevelsElem}</section>
+        {}
         {/* Class Level End */}
         {/* Spell Casting Start */}
         <section id="spellcasting-container">{spellCastingElem}</section>
