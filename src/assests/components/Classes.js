@@ -3,13 +3,17 @@ import React from "react";
 const headerElements = [];
 
 const Classes = props => {
+  const selectedLevel = props.classData.selectedLevel;
+
   const profElem = [];
   const profChoiceElem = [];
   const savingThrowElem = [];
-  let classLevelsElem = [];
   const classEquipmentElem = [];
   const spellCastingElem = [];
   const levelSelectElem = [];
+
+  let classLevelsElem;
+  let classLevelSpellElm;
 
   if (props.name.length === 0) {
     for (let key in props.classData) {
@@ -37,10 +41,9 @@ const Classes = props => {
     // Class Level Elements
     //TODO Maybe change this to select level form drop down?
     //TODO ^-and add spell level casting below???
-    const levelData =
-      props.classData.class_levels[props.classData.selectedLevel];
+    const levelData = props.classData.class_levels[selectedLevel];
     classLevelsElem = (
-      <div className="class-lvl-container-sub" key={" At Level - " + levelData}>
+      <div className="class-lvl-container-sub">
         <h4 className="class-lvl-head">{levelData.ability_score_bonuses}</h4>
         <div>
           {typeof levelData.class_specific !== "undefined"
@@ -71,6 +74,22 @@ const Classes = props => {
         <h4 className="class-lvl-head">{levelData.prof_bonus}</h4>
       </div>
     );
+
+    if (
+      props.classData.class_levels[selectedLevel].hasOwnProperty("spellcasting")
+    ) {
+      classLevelSpellElm = (
+        <div id="class-lvl-container-sub-spell">
+          <h4 id="class-lvl-spell-head">Spell Casting</h4>
+
+          {props.classData.class_levels[selectedLevel].spellcasting.map(
+            item => {
+              return <p key={item}>{item}</p>;
+            }
+          )}
+        </div>
+      );
+    }
 
     //Level drop down element
     for (let i = 1; i <= 20; i++) {
@@ -164,8 +183,8 @@ const Classes = props => {
             </h4>
           </div>
           {classLevelsElem}
+          {classLevelSpellElm}
         </section>
-        {}
         {/* Class Level End */}
         {/* Spell Casting Start */}
         <section id="spellcasting-container">{spellCastingElem}</section>
