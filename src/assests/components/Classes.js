@@ -6,9 +6,10 @@ const Classes = props => {
   const profElem = [];
   const profChoiceElem = [];
   const savingThrowElem = [];
-  const classLevelsElem = [];
+  let classLevelsElem = [];
   const classEquipmentElem = [];
   const spellCastingElem = [];
+  const levelSelectElem = [];
 
   if (props.name.length === 0) {
     for (let key in props.classData) {
@@ -36,44 +37,49 @@ const Classes = props => {
     // Class Level Elements
     //TODO Maybe change this to select level form drop down?
     //TODO ^-and add spell level casting below???
-    props.classData.class_levels.map(item => {
-      return classLevelsElem.push(
-        <div
-          className="class-lvl-container-sub"
-          key={props.name + " At Level - " + item.level}
-        >
-          <h4 className="class-lvl-head">{item.level}</h4>
-          <h4 className="class-lvl-head">{item.ability_score_bonuses}</h4>
-          <div>
-            {typeof item.class_specific !== "undefined"
-              ? item.class_specific.map(subItem => {
-                  return (
-                    <h4
-                      className="class-lvl-head"
-                      key={"At Level - " + item.level + " CS - " + subItem}
-                    >
-                      {subItem}
-                    </h4>
-                  );
-                })
-              : null}
-          </div>
-          <div>
-            {item.features.map(subItem => {
-              return (
-                <h4
-                  className="class-lvl-head"
-                  key={"At Level - " + item.level + " F - " + subItem}
-                >
-                  {subItem}
-                </h4>
-              );
-            })}
-          </div>
-          <h4 className="class-lvl-head">{item.prof_bonus}</h4>
+    const levelData =
+      props.classData.class_levels[props.classData.selectedLevel];
+    classLevelsElem = (
+      <div className="class-lvl-container-sub" key={" At Level - " + levelData}>
+        <h4 className="class-lvl-head">{levelData.ability_score_bonuses}</h4>
+        <div>
+          {typeof levelData.class_specific !== "undefined"
+            ? levelData.class_specific.map(subItem => {
+                return (
+                  <h4
+                    className="class-lvl-head"
+                    key={"At Level - " + levelData + " CS - " + subItem}
+                  >
+                    {subItem}
+                  </h4>
+                );
+              })
+            : null}
         </div>
+        <div>
+          {levelData.features.map(subItem => {
+            return (
+              <h4
+                className="class-lvl-head"
+                key={"At Level - " + levelData + " F - " + subItem}
+              >
+                {subItem}
+              </h4>
+            );
+          })}
+        </div>
+        <h4 className="class-lvl-head">{levelData.prof_bonus}</h4>
+      </div>
+    );
+
+    //Level drop down element
+    for (let i = 1; i <= 20; i++) {
+      levelSelectElem.push(
+        <option value={i} key={"Level: " + i}>
+          {i}
+        </option>
       );
-    });
+    }
     // Equipment Elements
     for (let key in props.classData.equipment) {
       classEquipmentElem.push(
@@ -136,23 +142,29 @@ const Classes = props => {
         <h2 id="class">{props.name}</h2>
         {/* Class Level Start */}
         <h3 className="title-main">Class Levels</h3>
-        <section id="lvl-head" className="class-lvl-container-sub">
-          <h4 className="class-lvl-head">
-            <span className="long">Level</span>
-            <span className="short">LvL</span>
-          </h4>
-          <h4 className="class-lvl-head">
-            <span className="long">Ability Score</span>
-            <span className="short">Abl. Score</span>
-          </h4>
-          <h4 className="class-lvl-head">Class Specific</h4>
-          <h4 className="class-lvl-head">Features</h4>
-          <h4 className="class-lvl-head">
-            <span className="long">Proficiencie Bonus</span>
-            <span className="short">Prof. Bonus</span>
-          </h4>
+        <label>Selecet A Level : </label>
+        <select
+          id={"class-level"}
+          defaultValue="1"
+          onChange={props.handleLevelChange}
+        >
+          {levelSelectElem}
+        </select>
+        <section id="class-lvl-container">
+          <div id="lvl-head" className="class-lvl-container-sub">
+            <h4 className="class-lvl-head">
+              <span className="long">Ability Score</span>
+              <span className="short">Abl. Score</span>
+            </h4>
+            <h4 className="class-lvl-head">Class Specific</h4>
+            <h4 className="class-lvl-head">Features</h4>
+            <h4 className="class-lvl-head">
+              <span className="long">Proficiencie Bonus</span>
+              <span className="short">Prof. Bonus</span>
+            </h4>
+          </div>
+          {classLevelsElem}
         </section>
-        <section id="class-lvl-container">{classLevelsElem}</section>
         {}
         {/* Class Level End */}
         {/* Spell Casting Start */}

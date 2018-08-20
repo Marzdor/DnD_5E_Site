@@ -7,7 +7,6 @@
     border-top: 1px solid black;
     border-bottom: 2px solid black;
     overflow-y: scroll;
-    height: 292px;
   }
   #lvl-head {
     border-top: 2px solid black;
@@ -31,7 +30,7 @@
   }
   .class-lvl-container-sub {
     display: grid;
-    grid-template-columns: 25px 40px repeat(2, 1fr) 50px;
+    grid-template-columns: 40px repeat(2, 1fr) 45px;
     justify-items: center;
     align-items: center;
     border-top: 1px solid black;

@@ -58,6 +58,7 @@ function getBaseClassData(stateClassData, onSuccess) {
                     newClassData[obj][key] = cleanedData[key];
                 }
               }
+              newClassData[obj].selectedLevel = 1;
             }
           });
         // Getting class level data
