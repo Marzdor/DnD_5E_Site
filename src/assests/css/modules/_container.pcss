@@ -1,0 +1,35 @@
+.container {
+  @mixin atSmall {
+    &-class {
+      &-level {
+        &-sub {
+          display: grid;
+          grid-template-columns: 40px 1fr 1fr 50px;
+          grid-column-gap: 5px;
+          margin: 5px 0;
+          &-spell {
+            margin: 5px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+      }
+
+      &-equipment {
+        &-sub {
+          &-item {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+      }
+      &-main {
+        text-align: center;
+      }
+      &-sub {
+        display: grid;
+        grid-template-columns: repeat($containerClassSubGrid, 1fr);
+      }
+    }
+  }
+}

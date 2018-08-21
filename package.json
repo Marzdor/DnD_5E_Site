@@ -12,6 +12,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postcss": "postcss --config postcss.config.js -w src/assests/css/main.css -o src/assests/css/index.css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.1.2",
+    "postcss-cli": "^6.0.0",
+    "postcss-import": "^12.0.0",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-simple-vars": "^4.1.0"
   }
 }

@@ -78,11 +78,17 @@ class App extends Component {
 
   handleLinkClick(e) {
     const name = e.target.innerHTML;
-    if (document.querySelector("#container").classList.contains("hidden")) {
-      document.querySelector("#container").classList.remove("hidden");
+    if (
+      document
+        .querySelector(".container-class-main")
+        .classList.contains("hidden")
+    ) {
+      document
+        .querySelector(".container-class-main")
+        .classList.remove("hidden");
     }
 
-    document.querySelector("#class-level").selectedIndex = 0;
+    document.querySelector("#level-select").selectedIndex = 0;
 
     switch (this.state.page) {
       case "Classes":

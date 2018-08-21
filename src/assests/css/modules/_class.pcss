@@ -1,0 +1,30 @@
+.class {
+  @mixin atSmall {
+    &-title {
+      &-main {
+        font-size: 1.825rem;
+        grid-column: span $containerClassSubGrid;
+      }
+      &-name {
+        font-size: 3rem;
+        margin: 5px 0;
+      }
+      &-spell {
+        grid-column: 1 / span $containerClassLevelSubSpell;
+        font-size: 1.125rem;
+      }
+      &-sub {
+        font-size: 1.125rem;
+      }
+      &-choose {
+        grid-column: span $containerClassSubGrid;
+      }
+    }
+    &-level {
+      margin: 5px 0;
+      &-label {
+        font-size: 1.125rem;
+      }
+    }
+  }
+}

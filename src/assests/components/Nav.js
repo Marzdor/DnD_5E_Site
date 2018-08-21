@@ -2,14 +2,14 @@ import React from "react";
 
 const Nav = props => {
   return (
-    <nav>
-      <a onClick={props.handleNavClick} href="#home">
+    <nav className="nav">
+      <a className="nav-link" onClick={props.handleNavClick} href="#home">
         Home
       </a>
-      <a onClick={props.handleNavClick} href="#classes">
+      <a className="nav-link" onClick={props.handleNavClick} href="#classes">
         Classes
       </a>
-      <a onClick={props.handleNavClick} href="#spells">
+      <a className="nav-link" onClick={props.handleNavClick} href="#spells">
         Spells
       </a>
     </nav>
