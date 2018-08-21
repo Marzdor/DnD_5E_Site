@@ -1,5 +1,5 @@
 import React from "react";
-//TODO Render Spellcasting level data
+
 const headerElements = [];
 
 const Classes = props => {
@@ -39,8 +39,6 @@ const Classes = props => {
       return savingThrowElem.push(<p key={item}>{item}</p>);
     });
     // Class Level Elements
-    //TODO Maybe change this to select level form drop down?
-    //TODO ^-and add spell level casting below???
     const levelData = props.classData.class_levels[selectedLevel];
     classLevelsElem = (
       <div className="class-lvl-container-sub">
