@@ -27,7 +27,6 @@ class App extends Component {
 
     //TODO GET Proficiencieses maybe in diff page like spells?
     //TODO GET Spells
-    //TODO GET Sub CLass
   }
 
   setClassCall(data) {

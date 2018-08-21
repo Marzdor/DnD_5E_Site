@@ -208,10 +208,6 @@ const Classes = props => {
           <h3 className="title-main">Saving Throws</h3>
           {savingThrowElem}
         </section>
-        <section className="container-sub">
-          <h3 className="title-main">Sub Classes</h3>
-          <p>{props.classData.subclasses}</p>
-        </section>
       </div>
     </article>
   );
