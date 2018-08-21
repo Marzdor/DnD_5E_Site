@@ -7,7 +7,6 @@
     border-top: 1px solid black;
     border-bottom: 2px solid black;
     overflow-y: scroll;
-    height: 292px;
   }
   #lvl-head {
     border-top: 2px solid black;
@@ -16,6 +15,18 @@
     grid-column: 1 / span 2;
   }
   #prof-choice > p:first-of-type {
+    grid-column: 1 / span 2;
+  }
+  #class-lvl-container-sub-spell {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-transform: capitalize;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    grid-column-gap: 5px;
+  }
+  #class-lvl-spell-head {
     grid-column: 1 / span 2;
   }
   .title-main {
@@ -31,7 +42,7 @@
   }
   .class-lvl-container-sub {
     display: grid;
-    grid-template-columns: 25px 40px repeat(2, 1fr) 50px;
+    grid-template-columns: 40px repeat(2, 1fr) 45px;
     justify-items: center;
     align-items: center;
     border-top: 1px solid black;

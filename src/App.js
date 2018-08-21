@@ -19,6 +19,7 @@ class App extends Component {
     this.changePage = this.changePage.bind(this);
     this.handleNavClick = this.handleNavClick.bind(this);
     this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.handleLevelChange = this.handleLevelChange.bind(this);
   }
 
   componentDidMount() {
@@ -55,6 +56,7 @@ class App extends Component {
         page = (
           <Classes
             handleLinkClick={this.handleLinkClick}
+            handleLevelChange={this.handleLevelChange}
             classData={classData}
             name={this.state.selected}
           />
@@ -80,6 +82,9 @@ class App extends Component {
     if (document.querySelector("#container").classList.contains("hidden")) {
       document.querySelector("#container").classList.remove("hidden");
     }
+
+    document.querySelector("#class-level").selectedIndex = 0;
+
     switch (this.state.page) {
       case "Classes":
         this.setState({ selected: name }, () => {
@@ -93,6 +98,19 @@ class App extends Component {
       default:
         console.log(this.state.page);
     }
+  }
+
+  handleLevelChange(e) {
+    let newClassData = this.state.classData;
+    newClassData[this.state.selected].selectedLevel = parseInt(
+      e.target.value,
+      10
+    );
+    this.setState({ newClassData }, () => {
+      const pageName = this.state.page;
+      const newComponent = this.changePage(pageName);
+      this.setState({ page: pageName, component: newComponent });
+    });
   }
   render() {
     return (
