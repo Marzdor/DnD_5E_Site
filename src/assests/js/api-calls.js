@@ -42,6 +42,7 @@ function getBaseClassData(stateClassData, onSuccess) {
                   case "subclasses":
                     newClassData[obj][key] = cleanedData[key][0].name;
                     break;
+                  //TODO lookin to palidin bug starting at index 5
                   case "spellcasting":
                     fetch(cleanedData[key].url)
                       .then(res => {
