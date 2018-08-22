@@ -5,8 +5,8 @@ const Spells = props => {
 
   props.spellList.map(item => {
     return spellElem.push(
-      <button onClick={props.handleLinkClick} key={item.name}>
-        {item.name}
+      <button onClick={props.handleSpellLinkClick} key={item}>
+        {item}
       </button>
     );
   });

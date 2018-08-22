@@ -440,7 +440,7 @@ a {
           .container-class-level-sub-spell {
             margin: 5px 0;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
           }
           .container-class-equipment-sub-item {
             display: grid;

@@ -160,10 +160,34 @@ function getBaseClassData(stateClassData, onSuccess) {
           });
       }
 
-      onSuccess(newClassData);
+      onSuccess(newClassData, "class");
     });
 }
 
+function getBaseSpellList(stateSpellData, onSuccess) {
+  fetch("http://www.dnd5eapi.co/api/spells/")
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      // get list off all spells
+      let newSpellData = stateSpellData;
+      data = data.results.map(item => {
+        return item.name;
+      });
+      newSpellData = data;
+
+      onSuccess(newSpellData, "spell");
+    });
+}
+
+async function fetchSpells(i) {
+  const response = await fetch("http://www.dnd5eapi.co/api/spells/" + i);
+  const data = await response.json();
+
+  return data;
+}
+//TODO Refractor this shit to make it better I already h8te it
 function cleanClassData(data) {
   data = commonClean(data);
   delete data.name;
@@ -185,7 +209,10 @@ function cleanSpellCastingData(data) {
   delete data.level;
   return data;
 }
-
+function cleanSpellData(data) {
+  data = commonClean(data);
+  return data;
+}
 function commonClean(data) {
   delete data.class;
   delete data.index;
@@ -193,4 +220,4 @@ function commonClean(data) {
   delete data._id;
   return data;
 }
-export { getBaseClassData };
+export { getBaseClassData, getBaseSpellList, fetchSpells };

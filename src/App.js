@@ -3,7 +3,11 @@ import Nav from "./assests/components/Nav";
 import Home from "./assests/components/Home";
 import Classes from "./assests/components/Classes";
 import Spells from "./assests/components/Spells";
-import { getBaseClassData } from "./assests/js/api-calls";
+import {
+  getBaseClassData,
+  getBaseSpellList,
+  fetchSpells
+} from "./assests/js/api-calls";
 
 class App extends Component {
   constructor(props) {
@@ -12,26 +16,38 @@ class App extends Component {
       page: "Home",
       component: <Home />,
       classData: {},
-      spellData: {},
+      spellList: {},
       selected: ""
     };
-    this.setClassCall = this.setClassCall.bind(this);
+    this.setCall = this.setCall.bind(this);
     this.changePage = this.changePage.bind(this);
     this.handleNavClick = this.handleNavClick.bind(this);
-    this.handleLinkClick = this.handleLinkClick.bind(this);
+    this.handleClassLinkClick = this.handleClassLinkClick.bind(this);
+    this.handleSpellLinkClick = this.handleSpellLinkClick.bind(this);
     this.handleLevelChange = this.handleLevelChange.bind(this);
   }
 
   componentDidMount() {
-    getBaseClassData(this.state.classData, this.setClassCall);
+    getBaseClassData(this.state.classData, this.setCall);
+    getBaseSpellList(this.state.spellList, this.setCall);
 
     //TODO GET Proficiencieses maybe in diff page like spells?
     //TODO GET Spells
   }
 
-  setClassCall(data) {
-    this.setState({ classData: data });
+  setCall(data, call) {
+    switch (call) {
+      case "class":
+        this.setState({ classData: data });
+        break;
+      case "spell":
+        this.setState({ spellList: data });
+        break;
+      default:
+        console.log(call);
+    }
   }
+
   changePage(name) {
     let page;
     switch (name) {
@@ -41,7 +57,7 @@ class App extends Component {
       case "Spells":
         page = (
           <Spells
-            handleLinkClick={this.handleLinkClick}
+            handleSpellLinkClick={this.handleSpellLinkClick}
             spellList={this.state.spellList}
           />
         );
@@ -54,7 +70,7 @@ class App extends Component {
 
         page = (
           <Classes
-            handleLinkClick={this.handleLinkClick}
+            handleClassLinkClick={this.handleClassLinkClick}
             handleLevelChange={this.handleLevelChange}
             classData={classData}
             name={this.state.selected}
@@ -76,7 +92,7 @@ class App extends Component {
     });
   }
 
-  handleLinkClick(e) {
+  handleClassLinkClick(e) {
     const name = e.target.innerHTML;
     if (
       document
@@ -104,7 +120,11 @@ class App extends Component {
         console.log(this.state.page);
     }
   }
-
+  handleSpellLinkClick(e) {
+    const index = this.state.spellList.indexOf(e.target.innerHTML) + 1;
+    console.log(e.target.innerHTML);
+    fetchSpells(index).then(data => console.log(data));
+  }
   handleLevelChange(e) {
     let newClassData = this.state.classData;
     newClassData[this.state.selected].selectedLevel = parseInt(
