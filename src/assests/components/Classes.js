@@ -21,7 +21,7 @@ const Classes = props => {
       headerElements.push(
         <button
           className="header-button"
-          onClick={props.handleLinkClick}
+          onClick={props.handleClassLinkClick}
           key={key}
         >
           {key}
