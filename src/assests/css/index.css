@@ -396,6 +396,13 @@ a {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5px
 }
+    .header-spell {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 5px;
+      max-height: 200px;
+      overflow: hidden;
+    }
     .header-button {
       border: 1px solid black;
       background-color: transparent;
@@ -428,6 +435,12 @@ a {
       .class-level-label {
         font-size: 1.125rem;
       }
+  }
+
+@media (min-width: 320px) {
+    .spells-search {
+      grid-column: span 2;
+    }
   }
 
 @media (min-width: 320px) {
