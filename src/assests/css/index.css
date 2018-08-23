@@ -396,6 +396,13 @@ a {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 5px
 }
+    .header-spell {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 5px;
+      max-height: 200px;
+      overflow: hidden;
+    }
     .header-button {
       border: 1px solid black;
       background-color: transparent;
@@ -431,6 +438,79 @@ a {
   }
 
 @media (min-width: 320px) {
+    .spells-search {
+      grid-column: span 2;
+    }
+      .spells-title-sub {
+        text-transform: capitalize;
+      }
+    .spells-casting_time {
+      grid-row: 7;
+      grid-column: 2;
+    }
+    .spells-classes {
+      grid-row: 6;
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+      .spells-classes h3 {
+        grid-column: span 3;
+      }
+    .spells-components {
+      grid-row: 8;
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+      .spells-components h3 {
+        grid-column: span 3;
+      }
+    .spells-concentration {
+      grid-row: 9;
+      grid-column: 1;
+    }
+    .spells-description {
+      grid-row: 2;
+      grid-column: span 2;
+    }
+    .spells-duration {
+      grid-row: 8;
+      grid-column: 1;
+    }
+    .spells-higher_level {
+      grid-row: 3;
+      grid-column: span 2;
+    }
+    .spells-level {
+      grid-row: 5;
+      grid-column: 1;
+    }
+    .spells-material {
+      grid-row: 4;
+      grid-column: span 2;
+    }
+    .spells-name {
+      grid-row: 1;
+      grid-column: span 2;
+    }
+    .spells-range {
+      grid-row: 7;
+      grid-column: 1;
+    }
+    .spells-ritual {
+      grid-row: 9;
+      grid-column: 2;
+    }
+    .spells-school {
+      grid-row: 5;
+      grid-column: 2;
+    }
+  }
+
+@media (min-width: 320px) {
         .container-class-level-sub {
           display: grid;
           grid-template-columns: 40px 1fr 1fr 50px;
@@ -452,5 +532,10 @@ a {
       .container-class-sub {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+      }
+      .container-spell-main {
+        display: grid;
+        text-align: center;
+        grid-template-columns: 1fr 1fr;
       }
   }

@@ -1,8 +1,9 @@
 @import "normalize.css";
-@import "base/_global.pcss";
 @import "base/_mixins.css";
+@import "base/_global.pcss";
 @import "base/_variables.pcss";
 @import "modules/_nav.pcss";
 @import "modules/_header.pcss";
 @import "modules/_class.pcss";
+@import "modules/_spells.pcss";
 @import "modules/_container.pcss";

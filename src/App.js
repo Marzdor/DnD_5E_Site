@@ -16,7 +16,9 @@ class App extends Component {
       page: "Home",
       component: <Home />,
       classData: {},
-      spellList: {},
+      spellData: {},
+      spellList: [],
+      spellListFiltered: [],
       selected: ""
     };
     this.setCall = this.setCall.bind(this);
@@ -25,6 +27,7 @@ class App extends Component {
     this.handleClassLinkClick = this.handleClassLinkClick.bind(this);
     this.handleSpellLinkClick = this.handleSpellLinkClick.bind(this);
     this.handleLevelChange = this.handleLevelChange.bind(this);
+    this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -58,7 +61,9 @@ class App extends Component {
         page = (
           <Spells
             handleSpellLinkClick={this.handleSpellLinkClick}
-            spellList={this.state.spellList}
+            spellListFiltered={this.state.spellListFiltered}
+            handleSearchUpdate={this.handleSearchUpdate}
+            spellData={this.state.spellData}
           />
         );
         break;
@@ -106,24 +111,21 @@ class App extends Component {
 
     document.querySelector("#level-select").selectedIndex = 0;
 
-    switch (this.state.page) {
-      case "Classes":
-        this.setState({ selected: name }, () => {
-          const pageName = this.state.page;
-          const newComponent = this.changePage(pageName);
-          this.setState({ page: pageName, component: newComponent });
-        });
-        break;
-      case "Spells":
-        break;
-      default:
-        console.log(this.state.page);
-    }
+    this.setState({ selected: name }, () => {
+      const pageName = this.state.page;
+      const newComponent = this.changePage(pageName);
+      this.setState({ page: pageName, component: newComponent });
+    });
   }
   handleSpellLinkClick(e) {
     const index = this.state.spellList.indexOf(e.target.innerHTML) + 1;
-    console.log(e.target.innerHTML);
-    fetchSpells(index).then(data => console.log(data));
+    fetchSpells(index).then(data => {
+      this.setState({ spellData: data }, () => {
+        const pageName = this.state.page;
+        const newComponent = this.changePage(pageName);
+        this.setState({ page: pageName, component: newComponent });
+      });
+    });
   }
   handleLevelChange(e) {
     let newClassData = this.state.classData;
@@ -132,6 +134,28 @@ class App extends Component {
       10
     );
     this.setState({ newClassData }, () => {
+      const pageName = this.state.page;
+      const newComponent = this.changePage(pageName);
+      this.setState({ page: pageName, component: newComponent });
+    });
+  }
+  handleSearchUpdate(e) {
+    const input = e.target.value;
+    let spellList = [];
+    // filter list based on input
+    this.state.spellList.map(algo => {
+      input.split(" ").map(spell => {
+        if (algo.toLowerCase().indexOf(spell.toLowerCase()) !== -1) {
+          spellList.push(algo);
+        }
+        return true;
+      });
+      return true;
+    });
+    if (input.length === 0) {
+      spellList = [];
+    }
+    this.setState({ spellListFiltered: spellList }, () => {
       const pageName = this.state.page;
       const newComponent = this.changePage(pageName);
       this.setState({ page: pageName, component: newComponent });

@@ -1,0 +1,76 @@
+.spells {
+  @mixin atSmall {
+    &-search {
+      grid-column: span 2;
+    }
+    &-title {
+      &-sub {
+        text-transform: capitalize;
+      }
+    }
+    &-casting_time {
+      grid-row: 7;
+      grid-column: 2;
+    }
+    &-classes {
+      grid-row: 6;
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      & h3 {
+        grid-column: span 3;
+      }
+    }
+    &-components {
+      grid-row: 8;
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      & h3 {
+        grid-column: span 3;
+      }
+    }
+    &-concentration {
+      grid-row: 9;
+      grid-column: 1;
+    }
+    &-description {
+      grid-row: 2;
+      grid-column: span 2;
+    }
+    &-duration {
+      grid-row: 8;
+      grid-column: 1;
+    }
+    &-higher_level {
+      grid-row: 3;
+      grid-column: span 2;
+    }
+    &-level {
+      grid-row: 5;
+      grid-column: 1;
+    }
+    &-material {
+      grid-row: 4;
+      grid-column: span 2;
+    }
+    &-name {
+      grid-row: 1;
+      grid-column: span 2;
+    }
+    &-range {
+      grid-row: 7;
+      grid-column: 1;
+    }
+    &-ritual {
+      grid-row: 9;
+      grid-column: 2;
+    }
+    &-school {
+      grid-row: 5;
+      grid-column: 2;
+    }
+  }
+}

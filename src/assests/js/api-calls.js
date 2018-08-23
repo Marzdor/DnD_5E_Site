@@ -184,8 +184,8 @@ function getBaseSpellList(stateSpellData, onSuccess) {
 
 async function fetchSpells(i) {
   const response = await fetch("http://www.dnd5eapi.co/api/spells/" + i);
-  const data = await response.json();
-
+  let data = await response.json();
+  data = cleanSpellData(data);
   return data;
 }
 //TODO Refractor this shit to make it better I already h8te it
@@ -212,6 +212,14 @@ function cleanSpellCastingData(data) {
 }
 function cleanSpellData(data) {
   data = commonClean(data);
+  delete data.page;
+  delete data.subclasses;
+  data.school = data.school.name;
+  data.description = data.desc;
+  delete data.desc;
+  data.classes = data.classes.map(item => {
+    return item.name;
+  });
   return data;
 }
 function commonClean(data) {
