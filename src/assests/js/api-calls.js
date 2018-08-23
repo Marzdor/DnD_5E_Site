@@ -212,10 +212,11 @@ function cleanSpellCastingData(data) {
 }
 function cleanSpellData(data) {
   data = commonClean(data);
-  delete data.name;
   delete data.page;
   delete data.subclasses;
   data.school = data.school.name;
+  data.description = data.desc;
+  delete data.desc;
   data.classes = data.classes.map(item => {
     return item.name;
   });

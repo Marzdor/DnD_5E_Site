@@ -16,6 +16,7 @@ class App extends Component {
       page: "Home",
       component: <Home />,
       classData: {},
+      spellData: {},
       spellList: [],
       spellListFiltered: [],
       selected: ""
@@ -62,6 +63,7 @@ class App extends Component {
             handleSpellLinkClick={this.handleSpellLinkClick}
             spellListFiltered={this.state.spellListFiltered}
             handleSearchUpdate={this.handleSearchUpdate}
+            spellData={this.state.spellData}
           />
         );
         break;
@@ -117,7 +119,13 @@ class App extends Component {
   }
   handleSpellLinkClick(e) {
     const index = this.state.spellList.indexOf(e.target.innerHTML) + 1;
-    fetchSpells(index).then(data => console.log(data));
+    fetchSpells(index).then(data => {
+      this.setState({ spellData: data }, () => {
+        const pageName = this.state.page;
+        const newComponent = this.changePage(pageName);
+        this.setState({ page: pageName, component: newComponent });
+      });
+    });
   }
   handleLevelChange(e) {
     let newClassData = this.state.classData;
@@ -134,6 +142,7 @@ class App extends Component {
   handleSearchUpdate(e) {
     const input = e.target.value;
     let spellList = [];
+    // filter list based on input
     this.state.spellList.map(algo => {
       input.split(" ").map(spell => {
         if (algo.toLowerCase().indexOf(spell.toLowerCase()) !== -1) {
@@ -143,7 +152,6 @@ class App extends Component {
       });
       return true;
     });
-    console.log(spellList);
     if (input.length === 0) {
       spellList = [];
     }

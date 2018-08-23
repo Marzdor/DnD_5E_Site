@@ -1,10 +1,11 @@
 import React from "react";
 
 const Spells = props => {
+  const spellList = [];
   const spellElem = [];
 
   props.spellListFiltered.map(item => {
-    return spellElem.push(
+    return spellList.push(
       <button
         className="header-button"
         onClick={props.handleSpellLinkClick}
@@ -14,6 +15,39 @@ const Spells = props => {
       </button>
     );
   });
+
+  for (let key in props.spellData) {
+    let prop = [];
+
+    if (typeof props.spellData[key] === "object") {
+      props.spellData[key].map(item => {
+        return prop.push(<p key={item}>{item}</p>);
+      });
+      spellElem.push(
+        <section className={"spells-" + key} key={key}>
+          <h3 className="spells-title-sub">{key.replace(/_/, " ")}</h3>
+          {prop}
+        </section>
+      );
+    } else {
+      if (key === "name") {
+        spellElem.push(
+          <h2 className={"spells-" + key} key={key}>
+            {props.spellData[key]}
+          </h2>
+        );
+      } else {
+        prop.push(<p key={props.spellData[key]}>{props.spellData[key]}</p>);
+        spellElem.push(
+          <section className={"spells-" + key} key={key}>
+            <h3 className="spells-title-sub">{key.replace(/_/, " ")}</h3>
+            {prop}
+          </section>
+        );
+      }
+    }
+  }
+
   return (
     <article>
       <header className="header-spell">
@@ -23,11 +57,9 @@ const Spells = props => {
           type="search"
           placeholder="Search For a Spell Ex. Acid Arrow"
         />
-        {spellElem}
+        {spellList}
       </header>
-      <section>
-        <h2>{props.name}</h2>
-      </section>
+      <div className="container-spell-main">{spellElem}</div>
     </article>
   );
 };
