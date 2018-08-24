@@ -384,14 +384,14 @@ a {
 @media (min-width: 320px) {
 
 .or {
-    grid-column: span 3
+    grid-column: 1 / span 3
 }
   }
 
 @media (min-width: 600px) {
 
 .or {
-    grid-column: span 3
+    grid-column: 1 / span 3
 }
   }
 
@@ -479,7 +479,8 @@ a {
 @media (min-width: 320px) {
 
 .class-title-sub {
-        font-size: 1.125rem
+        font-size: 1.125rem;
+        grid-column: span 3
     }
   }
 
@@ -505,76 +506,139 @@ a {
   }
 
 @media (min-width: 320px) {
-    .spells-search {
-      grid-column: span 2;
+
+.spells-search {
+      grid-column: span 2
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-title-sub {
+        text-transform: capitalize
     }
-      .spells-title-sub {
-        text-transform: capitalize;
-      }
-    .spells-casting_time {
+  }
+
+@media (min-width: 320px) {
+
+.spells-casting_time {
       grid-row: 7;
-      grid-column: 2;
-    }
-    .spells-classes {
+      grid-column: 2
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-classes {
       grid-row: 6;
       grid-column: span 2;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
+      grid-template-columns: repeat(3, 1fr)
+  }
+  }
 
-      .spells-classes h3 {
-        grid-column: span 3;
-      }
-    .spells-components {
+@media (min-width: 320px) {
+
+.spells-classes h3 {
+        grid-column: span 3
+    }
+  }
+
+@media (min-width: 320px) {
+
+.spells-components {
       grid-row: 8;
       grid-column: 2;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
+      grid-template-columns: repeat(3, 1fr)
+  }
+  }
 
-      .spells-components h3 {
-        grid-column: span 3;
-      }
-    .spells-concentration {
-      grid-row: 9;
-      grid-column: 1;
+@media (min-width: 320px) {
+
+.spells-components h3 {
+        grid-column: span 3
     }
-    .spells-description {
+  }
+
+@media (min-width: 320px) {
+
+.spells-concentration {
+      grid-row: 9;
+      grid-column: 1
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-description {
       grid-row: 2;
-      grid-column: span 2;
-    }
-    .spells-duration {
+      grid-column: span 2
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-duration {
       grid-row: 8;
-      grid-column: 1;
-    }
-    .spells-higher_level {
+      grid-column: 1
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-higher_level {
       grid-row: 3;
-      grid-column: span 2;
-    }
-    .spells-level {
+      grid-column: span 2
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-level {
       grid-row: 5;
-      grid-column: 1;
-    }
-    .spells-material {
+      grid-column: 1
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-material {
       grid-row: 4;
-      grid-column: span 2;
-    }
-    .spells-name {
+      grid-column: span 2
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-name {
       grid-row: 1;
-      grid-column: span 2;
-    }
-    .spells-range {
+      grid-column: span 2
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-range {
       grid-row: 7;
-      grid-column: 1;
-    }
-    .spells-ritual {
+      grid-column: 1
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-ritual {
       grid-row: 9;
-      grid-column: 2;
-    }
-    .spells-school {
+      grid-column: 2
+  }
+  }
+
+@media (min-width: 320px) {
+
+.spells-school {
       grid-row: 5;
-      grid-column: 2;
-    }
+      grid-column: 2
+  }
   }
 
 @media (min-width: 600px) {
@@ -643,9 +707,9 @@ a {
 
 @media (min-width: 320px) {
 
-.container-class-spell-main {
-          display: grid;
-          text-align: center;
-          grid-template-columns: 1fr 1fr
-      }
+.container-spell-main {
+        display: grid;
+        text-align: center;
+        grid-template-columns: 1fr 1fr
+    }
   }

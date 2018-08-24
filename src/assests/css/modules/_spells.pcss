@@ -1,74 +1,104 @@
 .spells {
-  @mixin atSmall {
-    &-search {
+  &-search {
+    @mixin atSmall {
       grid-column: span 2;
     }
-    &-title {
-      &-sub {
+  }
+  &-title {
+    &-sub {
+      @mixin atSmall {
         text-transform: capitalize;
       }
     }
-    &-casting_time {
+  }
+  &-casting_time {
+    @mixin atSmall {
       grid-row: 7;
       grid-column: 2;
     }
-    &-classes {
+  }
+  &-classes {
+    @mixin atSmall {
       grid-row: 6;
       grid-column: span 2;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-
-      & h3 {
+    }
+    & h3 {
+      @mixin atSmall {
         grid-column: span 3;
       }
     }
-    &-components {
+  }
+  &-components {
+    @mixin atSmall {
       grid-row: 8;
       grid-column: 2;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-
-      & h3 {
+    }
+    & h3 {
+      @mixin atSmall {
         grid-column: span 3;
       }
     }
-    &-concentration {
+  }
+  &-concentration {
+    @mixin atSmall {
       grid-row: 9;
       grid-column: 1;
     }
-    &-description {
+  }
+  &-description {
+    @mixin atSmall {
       grid-row: 2;
       grid-column: span 2;
     }
-    &-duration {
+  }
+  &-duration {
+    @mixin atSmall {
       grid-row: 8;
       grid-column: 1;
     }
-    &-higher_level {
+  }
+  &-higher_level {
+    @mixin atSmall {
       grid-row: 3;
       grid-column: span 2;
     }
-    &-level {
+  }
+  &-level {
+    @mixin atSmall {
       grid-row: 5;
       grid-column: 1;
     }
-    &-material {
+  }
+  &-material {
+    @mixin atSmall {
       grid-row: 4;
       grid-column: span 2;
     }
-    &-name {
+  }
+  &-name {
+    @mixin atSmall {
       grid-row: 1;
       grid-column: span 2;
     }
-    &-range {
+  }
+  &-range {
+    @mixin atSmall {
       grid-row: 7;
       grid-column: 1;
     }
-    &-ritual {
+  }
+  &-ritual {
+    @mixin atSmall {
       grid-row: 9;
       grid-column: 2;
     }
-    &-school {
+  }
+  &-school {
+    @mixin atSmall {
       grid-row: 5;
       grid-column: 2;
     }
