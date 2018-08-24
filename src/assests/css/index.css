@@ -348,6 +348,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 input:focus,
@@ -367,12 +368,38 @@ a {
 }
 
 @media (min-width: 320px) {
-  .long {
-    display: none;
+
+.long {
+    display: none
+}
   }
-  .or {
-    grid-column: span 3;
+
+@media (min-width: 600px) {
+
+.long {
+    display: block
+}
   }
+
+@media (min-width: 320px) {
+
+.or {
+    grid-column: span 3
+}
+  }
+
+@media (min-width: 600px) {
+
+.or {
+    grid-column: span 3
+}
+  }
+
+@media (min-width: 600px) {
+
+.short {
+    display: none
+}
   }
 
 @media (min-width: 320px) {
@@ -391,50 +418,90 @@ a {
 
 @media (min-width: 320px) {
 
-.header {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 5px
-}
-    .header-spell {
+.header-class {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 5px
+  }
+  }
+
+@media (min-width: 600px) {
+
+.header-class {
+      grid-column-gap: 20px
+  }
+  }
+
+@media (min-width: 320px) {
+
+.header-spell {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 5px;
       max-height: 200px;
-      overflow: hidden;
-    }
-    .header-button {
+      overflow: hidden
+  }
+  }
+
+@media (min-width: 320px) {
+
+.header-button {
       border: 1px solid black;
       background-color: transparent;
-      padding: 5px;
+      padding: 5px
+  }
+  }
+
+@media (min-width: 320px) {
+
+.class-title-main {
+        font-size: 1.825rem;
+        grid-column: span 3
     }
   }
 
 @media (min-width: 320px) {
-      .class-title-main {
-        font-size: 1.825rem;
-        grid-column: span 3;
-      }
-      .class-title-name {
+
+.class-title-name {
         font-size: 3rem;
-        margin: 5px 0;
-      }
-      .class-title-spell {
-        grid-column: 1 / span 2;
-        font-size: 1.125rem;
-      }
-      .class-title-sub {
-        font-size: 1.125rem;
-      }
-      .class-title-choose {
-        grid-column: span 3;
-      }
-    .class-level {
-      margin: 5px 0;
+        margin: 5px 0
     }
-      .class-level-label {
-        font-size: 1.125rem;
-      }
+  }
+
+@media (min-width: 320px) {
+
+.class-title-spell {
+        grid-column: 1 / span 2;
+        font-size: 1.125rem
+    }
+  }
+
+@media (min-width: 320px) {
+
+.class-title-sub {
+        font-size: 1.125rem
+    }
+  }
+
+@media (min-width: 320px) {
+
+.class-title-choose {
+        grid-column: span 3
+    }
+  }
+
+@media (min-width: 320px) {
+
+.class-level {
+      margin: 5px 0
+  }
+  }
+
+@media (min-width: 320px) {
+
+.class-level-label {
+        font-size: 1.125rem
+    }
   }
 
 @media (min-width: 320px) {
@@ -510,32 +577,75 @@ a {
     }
   }
 
+@media (min-width: 600px) {
+
+.container {
+    width: 80%;
+    margin: 0 auto
+}
+  }
+
 @media (min-width: 320px) {
-        .container-class-level-sub {
+
+.container-class-main {
+        text-align: center
+    }
+  }
+
+@media (min-width: 320px) {
+
+.container-class-sub {
+        display: grid
+    }
+  }
+
+@media (min-width: 320px) {
+
+.container-class-level-sub {
           display: grid;
           grid-template-columns: 40px 1fr 1fr 50px;
           grid-column-gap: 5px;
-          margin: 5px 0;
-        }
-          .container-class-level-sub-spell {
+          margin: 5px 0
+      }
+  }
+
+@media (min-width: 320px) {
+
+.container-class-level-sub-spell {
             margin: 5px 0;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-          }
-          .container-class-equipment-sub-item {
+            grid-template-columns: repeat(2, 1fr)
+        }
+  }
+
+@media (min-width: 320px) {
+
+.container-class-equipment-sub-item {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-          }
-      .container-class-main {
-        text-align: center;
+            grid-template-columns: repeat(3, 1fr)
+        }
+  }
+
+@media (min-width: 320px) {
+
+.container-class-equipment-main {
+          text-align: center
       }
-      .container-class-sub {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+  }
+
+@media (min-width: 320px) {
+
+.container-class-equipment-sub {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr)
       }
-      .container-spell-main {
-        display: grid;
-        text-align: center;
-        grid-template-columns: 1fr 1fr;
+  }
+
+@media (min-width: 320px) {
+
+.container-class-spell-main {
+          display: grid;
+          text-align: center;
+          grid-template-columns: 1fr 1fr
       }
   }

@@ -49,7 +49,7 @@ const Spells = props => {
   }
 
   return (
-    <article>
+    <article className="container">
       <header className="header-spell">
         <input
           className="spells-search"

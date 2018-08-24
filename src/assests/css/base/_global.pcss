@@ -6,6 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 input:focus,
 select:focus,
@@ -21,11 +22,24 @@ a {
   display: none;
 }
 
-@mixin atSmall {
-  .long {
+.long {
+  @mixin atSmall {
     display: none;
   }
-  .or {
+  @mixin atMedium {
+    display: block;
+  }
+}
+.or {
+  @mixin atSmall {
     grid-column: span 3;
+  }
+  @mixin atMedium {
+    grid-column: span 3;
+  }
+}
+.short {
+  @mixin atMedium {
+    display: none;
   }
 }

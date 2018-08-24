@@ -1,41 +1,65 @@
 .container {
-  @mixin atSmall {
-    &-class {
-      &-level {
-        &-sub {
+  @mixin atMedium {
+    width: 80%;
+    margin: 0 auto;
+  }
+  &-class {
+    &-main {
+      @mixin atSmall {
+        text-align: center;
+      }
+    }
+    &-sub {
+      @mixin atSmall {
+        display: grid;
+      }
+    }
+    &-level {
+      &-sub {
+        @mixin atSmall {
           display: grid;
           grid-template-columns: 40px 1fr 1fr 50px;
           grid-column-gap: 5px;
           margin: 5px 0;
-          &-spell {
+        }
+        &-spell {
+          @mixin atSmall {
             margin: 5px 0;
             display: grid;
             grid-template-columns: repeat($containerClassLevelSubSpell, 1fr);
           }
         }
       }
+    }
 
-      &-equipment {
-        &-sub {
-          &-item {
+    &-equipment {
+      &-sub {
+        &-item {
+          @mixin atSmall {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
           }
         }
       }
       &-main {
-        text-align: center;
+        @mixin atSmall {
+          text-align: center;
+        }
       }
       &-sub {
-        display: grid;
-        grid-template-columns: repeat($containerClassSubGrid, 1fr);
+        @mixin atSmall {
+          display: grid;
+          grid-template-columns: repeat($containerClassSubGrid, 1fr);
+        }
       }
     }
     &-spell {
       &-main {
-        display: grid;
-        text-align: center;
-        grid-template-columns: 1fr 1fr;
+        @mixin atSmall {
+          display: grid;
+          text-align: center;
+          grid-template-columns: 1fr 1fr;
+        }
       }
     }
   }
