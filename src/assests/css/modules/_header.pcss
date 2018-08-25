@@ -6,7 +6,8 @@
       grid-gap: 5px;
     }
     @mixin atMedium {
-      grid-column-gap: 20px;
+      display: flex;
+      flex-direction: column;
     }
   }
   &-spell {
@@ -17,12 +18,22 @@
       max-height: 200px;
       overflow: hidden;
     }
+    @mixin atMedium {
+      display: flex;
+      flex-direction: column;
+      max-height: 90vh;
+    }
   }
   &-button {
     @mixin atSmall {
       border: 1px solid black;
       background-color: transparent;
       padding: 5px;
+    }
+    @mixin atMedium {
+      height: 30px;
+      min-height: 30px;
+      margin: 5px 0;
     }
   }
 }

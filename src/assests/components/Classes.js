@@ -1,7 +1,6 @@
 import React from "react";
 
 const headerElements = [];
-
 const Classes = props => {
   const selectedLevel = props.classData.selectedLevel;
 
@@ -15,7 +14,7 @@ const Classes = props => {
   let classLevelsElem;
   let classLevelSpellElm;
 
-  if (props.name.length === 0) {
+  if (headerElements.length === 0) {
     // Header Elements
     for (let key in props.classData) {
       headerElements.push(
@@ -28,7 +27,7 @@ const Classes = props => {
         </button>
       );
     }
-  } else {
+  } else if (props.name.length !== 0) {
     // Proficiencie Elements
     props.classData.proficiencies.map(item => {
       return profElem.push(<p key={item}>{item}</p>);
@@ -168,7 +167,7 @@ const Classes = props => {
   }
 
   return (
-    <article className="container">
+    <article className="container-class">
       <header className="header-class">{headerElements}</header>
       <div className="hidden container-class-main">
         <h2 className="class-title-name">{props.name}</h2>

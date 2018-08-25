@@ -1,12 +1,20 @@
 .container {
-  @mixin atMedium {
-    width: 80%;
-    margin: 0 auto;
-  }
   &-class {
+    @mixin atSmall {
+      display: grid;
+    }
+    @mixin atMedium {
+      grid-template-columns: 30% 70%;
+    }
     &-main {
       @mixin atSmall {
         text-align: center;
+      }
+      @mixin atMedium {
+        height: 95vh;
+        overflow: scroll;
+        width: 90%;
+        margin: 0 auto;
       }
     }
     &-sub {
@@ -54,11 +62,23 @@
     }
   }
   &-spell {
+    @mixin atSmall {
+      display: grid;
+    }
+    @mixin atMedium {
+      grid-template-columns: 30% 70%;
+    }
     &-main {
       @mixin atSmall {
         display: grid;
         text-align: center;
         grid-template-columns: 1fr 1fr;
+      }
+      @mixin atMedium {
+        width: 90%;
+        margin: 0 auto;
+        max-height: 95vh;
+        overflow: scroll;
       }
     }
   }

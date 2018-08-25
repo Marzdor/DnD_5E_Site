@@ -49,13 +49,13 @@ const Spells = props => {
   }
 
   return (
-    <article className="container">
+    <article className="container-spell">
       <header className="header-spell">
         <input
           className="spells-search"
           onChange={props.handleSearchUpdate}
           type="search"
-          placeholder="Search For a Spell Ex. Acid Arrow"
+          placeholder="Search For a Spell"
         />
         {spellList}
       </header>
