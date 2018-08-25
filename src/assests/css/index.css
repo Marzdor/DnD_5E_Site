@@ -374,6 +374,13 @@ a {
 }
   }
 
+@media (min-width: 1024px) {
+
+.long {
+    display: block
+}
+  }
+
 @media (min-width: 320px) {
 
 .or {
@@ -388,8 +395,12 @@ a {
 }
   }
 
+@media (min-width: 1024px) {
+
 .short {
+    display: none
 }
+  }
 
 @media (min-width: 320px) {
 
@@ -468,6 +479,13 @@ a {
     }
   }
 
+@media (min-width: 1024px) {
+
+.class-title-main {
+        grid-column: span 4
+    }
+  }
+
 @media (min-width: 320px) {
 
 .class-title-name {
@@ -484,11 +502,19 @@ a {
     }
   }
 
+@media (min-width: 1024px) {
+
+.class-title-spell {
+        grid-column: 1 / span 3
+    }
+  }
+
 @media (min-width: 320px) {
 
 .class-title-sub {
         font-size: 1.125rem;
-        grid-column: span 3
+        grid-column: span 3;
+        text-transform: capitalize
     }
   }
 
@@ -496,6 +522,13 @@ a {
 
 .class-title-choose {
         grid-column: span 3
+    }
+  }
+
+@media (min-width: 1024px) {
+
+.class-title-choose {
+        grid-column: span 4
     }
   }
 
@@ -671,6 +704,13 @@ a {
   }
   }
 
+@media (min-width: 1024px) {
+
+.container-class {
+      grid-template-columns: 10% 90%
+  }
+  }
+
 @media (min-width: 320px) {
 
 .container-class-main {
@@ -685,6 +725,15 @@ a {
         overflow: scroll;
         width: 90%;
         margin: 0 auto
+    }
+  }
+
+@media (min-width: 1024px) {
+
+.container-class-main {
+        width: 100%;
+        overflow: auto;
+        height: 100%
     }
   }
 
@@ -705,6 +754,13 @@ a {
       }
   }
 
+@media (min-width: 1024px) {
+
+.container-class-level-sub {
+          grid-template-columns: repeat(4, 1fr)
+      }
+  }
+
 @media (min-width: 320px) {
 
 .container-class-level-sub-spell {
@@ -714,11 +770,25 @@ a {
         }
   }
 
+@media (min-width: 1024px) {
+
+.container-class-level-sub-spell {
+            grid-template-columns: repeat(3, 1fr)
+        }
+  }
+
 @media (min-width: 320px) {
 
 .container-class-equipment-sub-item {
             display: grid;
             grid-template-columns: repeat(3, 1fr)
+        }
+  }
+
+@media (min-width: 1024px) {
+
+.container-class-equipment-sub-item {
+            grid-template-columns: repeat(4, 1fr)
         }
   }
 

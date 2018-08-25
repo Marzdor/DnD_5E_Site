@@ -26,6 +26,9 @@ a {
   @mixin atSmall {
     display: none;
   }
+  @mixin atLarge {
+    display: block;
+  }
 }
 .or {
   @mixin atSmall {
@@ -36,4 +39,7 @@ a {
   }
 }
 .short {
+  @mixin atLarge {
+    display: none;
+  }
 }

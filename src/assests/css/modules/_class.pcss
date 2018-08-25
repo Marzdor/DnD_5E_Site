@@ -5,6 +5,9 @@
         font-size: 1.825rem;
         grid-column: span $containerClassSubGrid;
       }
+      @mixin atLarge {
+        grid-column: span 4;
+      }
     }
     &-name {
       @mixin atSmall {
@@ -17,16 +20,23 @@
         grid-column: 1 / span $containerClassLevelSubSpell;
         font-size: 1.125rem;
       }
+      @mixin atLarge {
+        grid-column: 1 / span 3;
+      }
     }
     &-sub {
       @mixin atSmall {
         font-size: 1.125rem;
         grid-column: span 3;
+        text-transform: capitalize;
       }
     }
     &-choose {
       @mixin atSmall {
         grid-column: span $containerClassSubGrid;
+      }
+      @mixin atLarge {
+        grid-column: span 4;
       }
     }
   }

@@ -6,6 +6,9 @@
     @mixin atMedium {
       grid-template-columns: 30% 70%;
     }
+    @mixin atLarge {
+      grid-template-columns: 10% 90%;
+    }
     &-main {
       @mixin atSmall {
         text-align: center;
@@ -15,6 +18,11 @@
         overflow: scroll;
         width: 90%;
         margin: 0 auto;
+      }
+      @mixin atLarge {
+        width: 100%;
+        overflow: auto;
+        height: 100%;
       }
     }
     &-sub {
@@ -30,11 +38,17 @@
           grid-column-gap: 5px;
           margin: 5px 0;
         }
+        @mixin atLarge {
+          grid-template-columns: repeat(4, 1fr);
+        }
         &-spell {
           @mixin atSmall {
             margin: 5px 0;
             display: grid;
             grid-template-columns: repeat($containerClassLevelSubSpell, 1fr);
+          }
+          @mixin atLarge {
+            grid-template-columns: repeat(3, 1fr);
           }
         }
       }
@@ -45,6 +59,9 @@
           @mixin atSmall {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+          }
+          @mixin atLarge {
+            grid-template-columns: repeat(4, 1fr);
           }
         }
       }
