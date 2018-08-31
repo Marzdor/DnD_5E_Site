@@ -59,7 +59,9 @@ const Spells = props => {
         />
         {spellList}
       </header>
-      <div className="container-spell-main">{spellElem}</div>
+      <div id="hidden" className="container-spell-main">
+        {spellElem}
+      </div>
     </article>
   );
 };

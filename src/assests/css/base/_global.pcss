@@ -7,6 +7,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   font-family: "Open Sans", sans-serif;
+  overflow: hidden;
 }
 input:focus,
 select:focus,
@@ -18,8 +19,18 @@ a {
   text-decoration: none;
   color: black;
 }
-.hidden {
-  display: none;
+div p {
+  @mixin atLarge {
+    width: 80%;
+    margin: 25px auto;
+    text-align: justify;
+    text-indent: 50px;
+  }
+}
+#hidden {
+  @mixin atSmall {
+    display: none;
+  }
 }
 
 .long {

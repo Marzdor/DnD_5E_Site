@@ -169,7 +169,7 @@ const Classes = props => {
   return (
     <article className="container-class">
       <header className="header-class">{headerElements}</header>
-      <div className="hidden container-class-main">
+      <div id="hidden" className="container-class-main">
         <h2 className="class-title-name">{props.name}</h2>
         {/* Class Level Start */}
         <h3 className="class-title-main">Class Levels</h3>

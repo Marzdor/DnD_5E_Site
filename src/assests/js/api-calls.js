@@ -93,6 +93,21 @@ function getBaseClassData(stateClassData, onSuccess) {
                           " Dice Value: " +
                           level[key].martial_arts.dice_value;
                         break;
+                      case "Sorcerer":
+                        //TODO fix sorcerer class specific bug
+                        console.log(level[key]);
+
+                        level[key].creating_spell_slots.map(item => {
+                          for (let key in item) {
+                            prop.push(
+                              key.replace(/_/g, " ") + ": " + item[key]
+                            );
+                          }
+                          return true;
+                        });
+                        level[key].creating_spell_slots = prop;
+
+                        break;
                       default:
                         for (let item in level[key]) {
                           prop.push(

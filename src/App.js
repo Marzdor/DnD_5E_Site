@@ -99,14 +99,8 @@ class App extends Component {
 
   handleClassLinkClick(e) {
     const name = e.target.innerHTML;
-    if (
-      document
-        .querySelector(".container-class-main")
-        .classList.contains("hidden")
-    ) {
-      document
-        .querySelector(".container-class-main")
-        .classList.remove("hidden");
+    if (document.querySelector(".container-class-main").id === "hidden") {
+      document.querySelector(".container-class-main").id = "";
     }
 
     document.querySelector("#level-select").selectedIndex = 0;
@@ -118,6 +112,9 @@ class App extends Component {
     });
   }
   handleSpellLinkClick(e) {
+    if (document.querySelector(".container-spell-main").id === "hidden") {
+      document.querySelector(".container-spell-main").id = "";
+    }
     const index = this.state.spellList.indexOf(e.target.innerHTML) + 1;
     fetchSpells(index).then(data => {
       this.setState({ spellData: data }, () => {
