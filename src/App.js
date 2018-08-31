@@ -109,6 +109,7 @@ class App extends Component {
       const pageName = this.state.page;
       const newComponent = this.changePage(pageName);
       this.setState({ page: pageName, component: newComponent });
+      this.handleLevelChange({ target: { value: 1 } });
     });
   }
   handleSpellLinkClick(e) {

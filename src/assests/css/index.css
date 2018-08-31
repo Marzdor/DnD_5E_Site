@@ -553,6 +553,16 @@ div p {
   }
   }
 
+@media (min-width: 1024px) {
+
+.class-level {
+      text-indent: 0;
+      text-align: center;
+      align-self: center;
+      justify-self: center
+  }
+  }
+
 @media (min-width: 320px) {
 
 .class-level-label {
@@ -769,7 +779,9 @@ div p {
 @media (min-width: 1024px) {
 
 .container-class-level-sub {
-          grid-template-columns: repeat(4, 1fr)
+          grid-template-columns: 120px 214px 214px 120px;
+          width: 700px;
+          margin: 0 auto
       }
   }
 

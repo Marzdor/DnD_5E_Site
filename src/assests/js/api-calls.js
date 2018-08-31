@@ -95,14 +95,14 @@ function getBaseClassData(stateClassData, onSuccess) {
                         break;
                       case "Sorcerer":
                         //TODO fix sorcerer class specific bug
-                        console.log(level[key]);
-
                         level[key].creating_spell_slots.map(item => {
+                          let text = "";
                           for (let key in item) {
-                            prop.push(
-                              key.replace(/_/g, " ") + ": " + item[key]
-                            );
+                            text +=
+                              key.replace(/_/g, " ") + ": " + item[key] + " ";
                           }
+                          prop.push(text.replace(/\s$/, ""));
+                          console.log(prop);
                           return true;
                         });
                         level[key].creating_spell_slots = prop;

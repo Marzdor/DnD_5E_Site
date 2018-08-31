@@ -2,7 +2,7 @@ import React from "react";
 
 const headerElements = [];
 const Classes = props => {
-  const selectedLevel = props.classData.selectedLevel;
+  const selectedLevel = props.classData.selectedLevel - 1;
 
   const profElem = [];
   const profChoiceElem = [];
