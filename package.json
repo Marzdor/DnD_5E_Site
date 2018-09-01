@@ -2,6 +2,7 @@
   "name": "dnd5e",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://marzdor.github.io//DnD_5E_Site/",
   "dependencies": {
     "normalize.css": "^8.0.0",
     "react": "^16.4.2",
@@ -13,10 +14,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "postcss": "postcss --config postcss.config.js -w src/assests/css/main.css -o src/assests/css/index.css"
   },
   "devDependencies": {
     "autoprefixer": "^9.1.2",
+    "gh-pages": "^1.2.0",
     "postcss-cli": "^6.0.0",
     "postcss-import": "^12.0.0",
     "postcss-mixins": "^6.2.0",

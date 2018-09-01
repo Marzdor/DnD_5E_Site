@@ -94,7 +94,6 @@ function getBaseClassData(stateClassData, onSuccess) {
                           level[key].martial_arts.dice_value;
                         break;
                       case "Sorcerer":
-                        //TODO fix sorcerer class specific bug
                         level[key].creating_spell_slots.map(item => {
                           let text = "";
                           for (let key in item) {
@@ -102,7 +101,6 @@ function getBaseClassData(stateClassData, onSuccess) {
                               key.replace(/_/g, " ") + ": " + item[key] + " ";
                           }
                           prop.push(text.replace(/\s$/, ""));
-                          console.log(prop);
                           return true;
                         });
                         level[key].creating_spell_slots = prop;

@@ -381,6 +381,10 @@ div p {
 }
   }
 
+#api-link {
+  text-decoration: underline;
+}
+
 @media (min-width: 320px) {
 
 .long {
@@ -862,4 +866,8 @@ div p {
         max-height: 95vh;
         overflow: scroll
     }
+  }
+
+.container-home {
+    text-align: center;
   }
