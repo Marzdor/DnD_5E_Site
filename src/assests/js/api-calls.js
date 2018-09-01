@@ -1,5 +1,5 @@
 function getBaseClassData(stateClassData, onSuccess) {
-  fetch("http://www.dnd5eapi.co/api/classes/")
+  fetch("https://www.dnd5eapi.co/api/classes/")
     .then(res => {
       return res.json();
     })
@@ -12,7 +12,7 @@ function getBaseClassData(stateClassData, onSuccess) {
       });
       for (let obj in newClassData) {
         // Get base class data
-        let target = "http://www.dnd5eapi.co/api/classes/" + obj.toLowerCase();
+        let target = "https://www.dnd5eapi.co/api/classes/" + obj.toLowerCase();
         fetch(target)
           .then(res => {
             return res.json();
@@ -141,7 +141,7 @@ function getBaseClassData(stateClassData, onSuccess) {
 
       for (let i = 1; i <= 12; i++) {
         // Getting equipment data
-        fetch("http://www.dnd5eapi.co/api/startingequipment/" + i)
+        fetch("https://www.dnd5eapi.co/api/startingequipment/" + i)
           .then(res => {
             return res.json();
           })
@@ -179,7 +179,7 @@ function getBaseClassData(stateClassData, onSuccess) {
 }
 
 function getBaseSpellList(stateSpellData, onSuccess) {
-  fetch("http://www.dnd5eapi.co/api/spells/")
+  fetch("https://www.dnd5eapi.co/api/spells/")
     .then(res => {
       return res.json();
     })
@@ -196,7 +196,7 @@ function getBaseSpellList(stateSpellData, onSuccess) {
 }
 
 async function fetchSpells(i) {
-  const response = await fetch("http://www.dnd5eapi.co/api/spells/" + i);
+  const response = await fetch("https://www.dnd5eapi.co/api/spells/" + i);
   let data = await response.json();
   data = cleanSpellData(data);
   return data;
