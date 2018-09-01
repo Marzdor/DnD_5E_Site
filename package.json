@@ -2,7 +2,7 @@
   "name": "dnd5e",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://marzdor.github.io//DnD_5E_Site/",
+  "homepage": "https://marzdor.github.io/DnD_5E_Site/",
   "dependencies": {
     "normalize.css": "^8.0.0",
     "react": "^16.4.2",
