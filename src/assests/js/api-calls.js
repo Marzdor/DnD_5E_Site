@@ -1,4 +1,5 @@
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
 function getBaseClassData(stateClassData, onSuccess) {
   fetch(proxyurl + "http://www.dnd5eapi.co/api/classes/")
     .then(res => {
